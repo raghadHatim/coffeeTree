@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coffee Tree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Jost:wght@400;500&family=Noto+Naskh+Arabic:wght@500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="{% static 'image/logo.png' %}">
+<link rel="apple-touch-icon" href="{% static 'image/logo.png' %}">
+<meta name="theme-color" content="#F1ECDB">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<header class="site-header" id="top">
+  <a class="logo" href="#top" aria-label="Coffee Tree home"><img src="{% static 'image/logo.png' %}" alt="Coffee Tree"></a>
+
+  <nav class="site-nav" id="siteNav" aria-label="Main">
+    <a href="{% url 'home' %}#top">Home</a>
+    <a href="{% url 'home' %}#about">About</a>
+    <a href="{% url 'shop' %}">Shop</a>
+  </nav>
+
+  <div class="header-actions">
+    <a class="signin" href="#">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
+      <span>Sign in</span>
+    </a>
+    <a class="cart" href="#" aria-label="Cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.2 11h10.2l2-8H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="ar" aria-pressed="false">AR</button>
+    </div>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<div class="hero" id="home">
+  <svg class="tree" id="tree" viewBox="0 0 900 780" preserveAspectRatio="xMaxYMin meet" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="lg0" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c9340"/><stop offset=".5" stop-color="#26391a"/><stop offset="1" stop-color="#4f7a2c"/></linearGradient>
+      <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#587f30"/><stop offset=".5" stop-color="#1f3015"/><stop offset="1" stop-color="#3f6325"/></linearGradient>
+      <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a9a45"/><stop offset=".5" stop-color="#34491d"/><stop offset="1" stop-color="#5a8030"/></linearGradient>
+      <linearGradient id="lg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a6e2a"/><stop offset=".5" stop-color="#292F17"/><stop offset="1" stop-color="#36561f"/></linearGradient>
+      <linearGradient id="lg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#86a04c"/><stop offset=".5" stop-color="#3b5222"/><stop offset="1" stop-color="#62883a"/></linearGradient>
+      <linearGradient id="lg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3f6428"/><stop offset=".5" stop-color="#18260f"/><stop offset="1" stop-color="#2f4d1c"/></linearGradient>
+      <radialGradient id="bg0" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#e8584a"/><stop offset=".55" stop-color="#b52b2a"/><stop offset="1" stop-color="#6a1a1b"/></radialGradient>
+      <radialGradient id="bg1" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#d84a3d"/><stop offset=".55" stop-color="#9c2626"/><stop offset="1" stop-color="#581416"/></radialGradient>
+      <radialGradient id="bg2" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ea6a44"/><stop offset=".55" stop-color="#bd3a2a"/><stop offset="1" stop-color="#741f1e"/></radialGradient>
+      <radialGradient id="bg3" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#cfd07a"/><stop offset=".55" stop-color="#98a24b"/><stop offset="1" stop-color="#5f6f2f"/></radialGradient>
+    </defs>
+  </svg>
+
+  <main class="content">
+    <div class="copy">
+      <h1>Coffee, from the branch.</h1>
+      <p>Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches. Every bag is traced back to the tree it grew on.</p>
+      <div class="actions">
+        <a class="btn" href="{% url 'shop' %}">Shop beans</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<section class="about" id="about" aria-labelledby="about-title">
+  <div class="about-inner">
+    <div class="about-copy">
+      <p class="eyebrow" data-reveal>Rooted in Origin</p>
+      <h2 id="about-title" data-reveal>Every bean tells the story of its tree.</h2>
+      <p data-reveal>At <strong>Coffee Tree</strong>, our journey begins right at the origin—the living tree. We believe that exceptional coffee isn't crafted in the roastery, but nurtured on highland slopes under open skies, branch by branch.</p>
+      <p data-reveal>By partnering exclusively with sustainable micro-lot farms that hand-pick cherries at peak ripeness, we preserve the authentic flavor profile of every harvest. From the branch of the tree to your morning cup, we honor every step with artisanal weekly roasts.</p>
+      <ul class="facts">
+        <li data-reveal><strong>100%</strong><span>Traced to the Tree</span></li>
+        <li data-reveal><strong>Highland</strong><span>Single-Origin Micro-Lots</span></li>
+        <li data-reveal><strong>Weekly</strong><span>Small-Batch Roasts</span></li>
+      </ul>
+    </div>
+
+    <div class="sack" id="sack" data-reveal="zoom">
+      <div class="sack-shadow"></div>
+      <div class="sack-trigger" id="sackTrigger" aria-hidden="true"></div>
+      <img src="{% static 'image/coffeebeans.png' %}" width="760" height="958" alt="A burlap sack filled with roasted coffee beans">
+      <svg class="sack-beans" id="sackBeans" viewBox="0 -300 1015 1580" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="beanGrad" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#9a5a34"/><stop offset=".55" stop-color="#5a2c17"/><stop offset="1" stop-color="#2a1209"/></radialGradient>
+          <g id="bean">
+            <ellipse rx="28" ry="18" fill="url(#beanGrad)"/>
+            <path d="M-25 -2C-10 -9 8 7 25 1" stroke="#1d0b05" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <ellipse cx="-8" cy="-8" rx="10" ry="4" fill="rgba(255,255,255,.22)" transform="rotate(-18 -8 -8)"/>
+          </g>
+        </defs>
+        <g id="beanLayer"></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="crops" id="origins" aria-labelledby="crops-title">
+  <div class="crops-head">
+    <p class="eyebrow" data-reveal>Our crops</p>
+    <h2 id="crops-title" data-reveal>Grown slowly, in the open air</h2>
+  </div>
+  <div class="tape" data-reveal="fade" role="region" aria-label="Photos of our coffee crops">
+    <div class="tape-track">
+      <ul class="tape-group">
+        <li><figure><img src="{% static 'image/c1.jpg' %}" alt="Coffee terraces on a highland hillside" loading="lazy"><figcaption>Highland terraces</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c2.jpg' %}" alt="Ripe red coffee cherries on the branch" loading="lazy"><figcaption>Ripe cherries</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c3.jpg' %}" alt="Raised beds of coffee drying in the sun" loading="lazy"><figcaption>Drying beds</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c4.jpg' %}" alt="A basket of hand-picked coffee cherries" loading="lazy"><figcaption>Hand picking</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c5.jpg' %}" alt="White coffee blossoms" loading="lazy"><figcaption>Blossom season</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c6.jpg' %}" alt="A pile of freshly roasted beans" loading="lazy"><figcaption>Weekly roast</figcaption></figure></li>
+      </ul>
+      <ul class="tape-group" aria-hidden="true">
+        <li><figure><img src="{% static 'image/c1.jpg' %}" alt="" loading="lazy"><figcaption>Highland terraces</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c2.jpg' %}" alt="" loading="lazy"><figcaption>Ripe cherries</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c3.jpg' %}" alt="" loading="lazy"><figcaption>Drying beds</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c4.jpg' %}" alt="" loading="lazy"><figcaption>Hand picking</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c5.jpg' %}" alt="" loading="lazy"><figcaption>Blossom season</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c6.jpg' %}" alt="" loading="lazy"><figcaption>Weekly roast</figcaption></figure></li>
+      </ul>
+      <ul class="tape-group" aria-hidden="true">
+        <li><figure><img src="{% static 'image/c1.jpg' %}" alt="" loading="lazy"><figcaption>Highland terraces</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c2.jpg' %}" alt="" loading="lazy"><figcaption>Ripe cherries</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c3.jpg' %}" alt="" loading="lazy"><figcaption>Drying beds</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c4.jpg' %}" alt="" loading="lazy"><figcaption>Hand picking</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c5.jpg' %}" alt="" loading="lazy"><figcaption>Blossom season</figcaption></figure></li>
+        <li><figure><img src="{% static 'image/c6.jpg' %}" alt="" loading="lazy"><figcaption>Weekly roast</figcaption></figure></li>
+      </ul>
+    </div>
+  </div>
+</section>  
+
+<footer class="site-footer" id="visit">
+  <div class="footer-inner">
+    <div class="footer-brand" data-reveal>
+      <a class="logo" href="#top" aria-label="Coffee Tree home"><img src="{% static 'image/logo_white.png' %}" alt="Coffee Tree"></a>
+      <p>Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches</p>
+    </div>
+    <nav aria-label="Shop" data-reveal>
+      <h3><a href="{% url 'shop' %}">Shop</a></h3>
+      <ul>
+        <li><a href="{% url 'shop' %}#beans">Whole beans</a></li>
+        <li><a href="{% url 'shop' %}#tools">Coffee tools</a></li>
+        <li><a href="{% url 'shop' %}#mugs">Coffee mugs</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Company" data-reveal>
+      <h3>Company</h3>
+      <ul>
+        <li><a href="{% url 'home' %}#home">Home</a></li>
+        <li><a href="{% url 'home' %}#about">About</a></li>
+        <li><a href="{% url 'shop' %}">Shop</a></li>
+      </ul>
+    </nav>
+    <div class="footer-visit" data-reveal>
+      <h3>Visit</h3>
+      <p>123 Coffee Street, Beanville</p>
+      <p>coffeeTree@company.com</p>
+      <p>(123) 456-7890</p>
+    </div>
+  </div>
+  <div class="footer-bottom" data-reveal="fade">
+    <p>&copy; 2026 Coffee Tree. All rights reserved.</p>
+    <p>Roasted every Tuesday. Shipped on Wednesday.</p>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}" defer></script>
+</body>
+</html>

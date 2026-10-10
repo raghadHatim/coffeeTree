@@ -16,7 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views  # استبدلي coffeeTree باسم التطبيق لديك إذا كان مختلفاً، أو استخدمي نقطة هكذا: from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('shop/', views.shop, name='shop'),
 ]
