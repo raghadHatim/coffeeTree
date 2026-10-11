@@ -96,7 +96,7 @@
     var g = el('g', { transform: 'translate(' + f(px) + ' ' + f(py) + ') rotate(' + f(angDeg) + ')' }, parent);
     var W = len * 0.29, asym = R(-.12, .12), Wt = W * (1 + asym), Wb = W * (1 - asym), b = len * R(-.07, .07);
     var d = 'M0 0C' + f(.18 * len) + ' ' + f(-Wt) + ' ' + f(.62 * len) + ' ' + f(-Wt * 1.05 + b * .6) + ' ' + f(len) + ' ' + f(b) +
-            'C' + f(.62 * len) + ' ' + f(Wb * 1.05 + b * .6) + ' ' + f(.18 * len) + ' ' + f(Wb) + ' 0 0Z';
+      'C' + f(.62 * len) + ' ' + f(Wb * 1.05 + b * .6) + ' ' + f(.18 * len) + ' ' + f(Wb) + ' 0 0Z';
     el('path', { d: 'M-6 0L0 0', stroke: '#4b2a1b', 'stroke-width': 1.8, 'stroke-linecap': 'round', fill: 'none' }, g);
     el('path', { d: d, fill: 'url(#lg' + pickLeafGrad() + ')' }, g);
     var vd = '';
@@ -106,9 +106,11 @@
     }
     el('path', { d: vd, stroke: 'rgba(205,225,160,.22)', 'stroke-width': .8, fill: 'none', 'stroke-linecap': 'round' }, g);
     el('path', { d: 'M0 0Q' + f(.5 * len) + ' ' + f(b * .2) + ' ' + f(len * .97) + ' ' + f(b * .97), stroke: 'rgba(205,225,160,.5)', 'stroke-width': 1.2, fill: 'none', 'stroke-linecap': 'round' }, g);
-    items.push({ g: g, px: px, py: py, rot0: angDeg, dir0: angDeg * Math.PI / 180,
+    items.push({
+      g: g, px: px, py: py, rot0: angDeg, dir0: angDeg * Math.PI / 180,
       ang: 0, vel: 0, ang2: 0, vel2: 0,
-      k: R(.085, .125), damp: R(.935, .955), fl: 1, gain: .7 + len / 110, moved: false });
+      k: R(.085, .125), damp: R(.935, .955), fl: 1, gain: .7 + len / 110, moved: false
+    });
   }
 
   /* ---------- berry ---------- */
@@ -117,9 +119,11 @@
     el('line', { x1: 0, y1: 0, x2: f(ox), y2: f(oy), stroke: '#6b4a2f', 'stroke-width': 1.4, 'stroke-linecap': 'round' }, g);
     el('circle', { cx: f(ox), cy: f(oy), r: f(r), fill: 'url(#bg' + pickBerryGrad() + ')' }, g);
     el('ellipse', { cx: f(ox - r * .3), cy: f(oy - r * .38), rx: f(r * .3), ry: f(r * .18), fill: 'rgba(255,255,255,.42)', transform: 'rotate(-30 ' + f(ox - r * .3) + ' ' + f(oy - r * .38) + ')' }, g);
-    items.push({ g: g, px: px, py: py, rot0: 0, dir0: Math.atan2(oy, ox),
+    items.push({
+      g: g, px: px, py: py, rot0: 0, dir0: Math.atan2(oy, ox),
       ang: 0, vel: 0, ang2: 0, vel2: 0,
-      k: R(.07, .105), damp: R(.93, .95), fl: .5, gain: 1.15, moved: false });
+      k: R(.07, .105), damp: R(.93, .95), fl: .5, gain: 1.15, moved: false
+    });
   }
 
   /* ---------- branches ---------- */
@@ -194,15 +198,15 @@
   }
 
   /* tree: enters from the top-right corner and sweeps down and to the left */
-  var M  = branch([[990, -50], [890, 50], [800, 140], [705, 220], [605, 285], [500, 350], [400, 420], [300, 500], [215, 585]], 32, 3, null, 1);
-  var A  = branch([[850, 90], [770, 62], [680, 44], [590, 36], [500, 46], [415, 78]], 13, 2.5, M, .9);
-  var B  = branch([[795, 145], [835, 235], [845, 335], [825, 435], [785, 535], [735, 625], [675, 715]], 15, 2.5, M, 1);
-  var C  = branch([[605, 285], [625, 375], [605, 465], [565, 555], [505, 640], [445, 720]], 10, 2, M, .95);
-  var E  = branch([[500, 350], [472, 272], [425, 212], [355, 172], [285, 152]], 7, 2, M, .85);
-  var F  = branch([[400, 420], [382, 500], [352, 580], [305, 650]], 6, 2, M, .85);
-  var H  = branch([[785, 535], [705, 558], [625, 600], [565, 660]], 6, 2, B, .85);
+  var M = branch([[990, -50], [890, 50], [800, 140], [705, 220], [605, 285], [500, 350], [400, 420], [300, 500], [215, 585]], 32, 3, null, 1);
+  var A = branch([[850, 90], [770, 62], [680, 44], [590, 36], [500, 46], [415, 78]], 13, 2.5, M, .9);
+  var B = branch([[795, 145], [835, 235], [845, 335], [825, 435], [785, 535], [735, 625], [675, 715]], 15, 2.5, M, 1);
+  var C = branch([[605, 285], [625, 375], [605, 465], [565, 555], [505, 640], [445, 720]], 10, 2, M, .95);
+  var E = branch([[500, 350], [472, 272], [425, 212], [355, 172], [285, 152]], 7, 2, M, .85);
+  var F = branch([[400, 420], [382, 500], [352, 580], [305, 650]], 6, 2, M, .85);
+  var H = branch([[785, 535], [705, 558], [625, 600], [565, 660]], 6, 2, B, .85);
 
-  dress(M, .1,  30, 40, .95);
+  dress(M, .1, 30, 40, .95);
   dress(A, .12, 30, 40, .95);
   dress(B, .12, 30, 40, .95);
   dress(C, .12, 30, 40, .95);
@@ -375,7 +379,7 @@
 
   var TOP = -300;      // top of the beans' space (matches the svg viewBox)
   // top edge of the bean heap in the sack picture: [x, y] in picture units
-  var contour = [[100,275],[140,226],[180,204],[220,187],[260,160],[300,141],[340,123],[380,113],[420,112],[460,95],[500,83],[540,87],[580,100],[620,110],[660,121],[700,137],[740,153],[780,164],[820,197],[860,213]];
+  var contour = [[100, 275], [140, 226], [180, 204], [220, 187], [260, 160], [300, 141], [340, 123], [380, 113], [420, 112], [460, 95], [500, 83], [540, 87], [580, 100], [620, 110], [660, 121], [700, 137], [740, 153], [780, 164], [820, 197], [860, 213]];
 
   function heapY(x) {
     for (var i = 1; i < contour.length; i++) {
@@ -524,7 +528,7 @@
     if (!target) return;
     e.preventDefault();
     scrollToY(Math.max(0, target.getBoundingClientRect().top + window.pageYOffset));
-    try { history.pushState(null, '', id); } catch (err) {}
+    try { history.pushState(null, '', id); } catch (err) { }
   });
 
   /* ---- 2) reveal on scroll: elements with data-reveal fade up one after another ---- */
@@ -566,33 +570,44 @@
    SHOP PAGE: add to cart + category buttons
    ===================================================== */
 (function () {
-  /* ---- cart number in the header (kept in the browser, so it survives page changes) ---- */
-  var KEY = 'coffeeTreeCart';
+  /* ---- cart number in the header---- */
   var badge = document.querySelector('.cart-count');
-  var count = 0;
-  try { count = parseInt(localStorage.getItem(KEY), 10) || 0; } catch (e) {}
 
-  function show(bump) {
+  function show(count, bump) {
     if (!badge) return;
     badge.textContent = count;
     if (bump) { badge.classList.remove('bump'); void badge.offsetWidth; badge.classList.add('bump'); }
   }
-  show(false);
 
   document.addEventListener('click', function (e) {
     var btn = e.target.closest ? e.target.closest('.add') : null;
     if (!btn) return;
-    count++;
-    try { localStorage.setItem(KEY, String(count)); } catch (err) {}
-    show(true);
-    if (!btn.dataset.label) btn.dataset.label = btn.textContent;
-    btn.textContent = 'Added \u2713';
-    btn.classList.add('added');
-    clearTimeout(btn._t);
-    btn._t = setTimeout(function () {
-      btn.textContent = btn.dataset.label;
-      btn.classList.remove('added');
-    }, 1400);
+
+    var productId = btn.dataset.productId || btn.getAttribute('data-product-id');
+    if (!productId) return;
+
+    fetch('/cart/add/' + productId + '/', {
+      method: 'GET',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === 'success') {
+          show(data.cart_count, true);
+
+          if (!btn.dataset.label) btn.dataset.label = btn.textContent;
+          btn.textContent = 'Added \u2713';
+          btn.classList.add('added');
+          clearTimeout(btn._t);
+          btn._t = setTimeout(function () {
+            btn.textContent = btn.dataset.label;
+            btn.classList.remove('added');
+          }, 1400);
+        }
+      })
+      .catch(err => console.log('Error:', err));
   });
 
   /* ---- the category button of the section you are looking at gets highlighted ---- */

@@ -15,11 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from . import views  # استبدلي coffeeTree باسم التطبيق لديك إذا كان مختلفاً، أو استخدمي نقطة هكذا: from . import views
+from django.urls import path,include
+from . import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('shop/', views.shop, name='shop'),
+    path('cart/', include('cart.urls')),
 ]

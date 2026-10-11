@@ -22,6 +22,7 @@
     <a href="{% url 'home' %}#top">Home</a>
     <a href="{% url 'home' %}#about">About</a>
     <a href="{% url 'shop' %}">Shop</a>
+    <a href="{% url 'cart' %}">Cart</a>
   </nav>
 
   <div class="header-actions">
@@ -29,7 +30,7 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
       <span>Sign in</span>
     </a>
-    <a class="cart" href="#" aria-label="Cart">
+    <a class="cart" href="{% url 'cart' %}" aria-label="Cart">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.2 11h10.2l2-8H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>
       <span class="cart-count">0</span>
     </a>
@@ -139,7 +140,7 @@
 <footer class="site-footer" id="visit">
   <div class="footer-inner">
     <div class="footer-brand" data-reveal>
-      <a class="logo" href="#top" aria-label="Coffee Tree home"><img src="{% static 'image/logo_white.png' %}" alt="Coffee Tree"></a>
+      <a class="logo" href="#top" aria-label="Coffee Tree home"><img src="{% static 'image/logo_white.png' %}" alt="Coffee Tree logo"></a>
       <p>Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches</p>
     </div>
     <nav aria-label="Shop" data-reveal>
@@ -156,6 +157,7 @@
         <li><a href="{% url 'home' %}#home">Home</a></li>
         <li><a href="{% url 'home' %}#about">About</a></li>
         <li><a href="{% url 'shop' %}">Shop</a></li>
+        <li><a href="{% url 'cart' %}">Cart</a></li>
       </ul>
     </nav>
     <div class="footer-visit" data-reveal>
