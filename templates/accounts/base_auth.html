@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Account{% endblock %} | Coffee Tree</title>
+  <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; background:#F1ECDB; color:#3C1B0F; font-family:"Jost",system-ui,sans-serif; }
+    .auth-page { min-height:100vh; display:grid; place-items:center; padding:24px; }
+    .auth-card { width:100%; max-width:420px; }
+    .auth-card h1 { font-family:"Fraunces",Georgia,serif; font-weight:400; font-size:2.4rem; margin:0 0 20px; }
+    .auth-card label { display:block; font-weight:500; margin:16px 0 6px; }
+    .auth-card input { width:100%; box-sizing:border-box; padding:13px 14px; border:1px solid #3C1B0F; border-radius:12px; background:transparent; color:#3C1B0F; font:inherit; }
+    .auth-card input:focus { outline:2px solid #7E2625; outline-offset:2px; }
+    .auth-btn { width:100%; margin-top:24px; padding:15px; border:0; border-radius:14px; background:#3C1B0F; color:#F1ECDB; font:inherit; font-weight:500; cursor:pointer; }
+    .auth-btn:hover { background:#7E2625; }
+    .errorlist { color:#7E2625; list-style:none; padding:0; margin:6px 0 0; font-size:.9rem; }
+    .helptext { display:block; margin-top:6px; font-size:.82rem; opacity:.85; }
+    .helptext ul { padding-left:18px; margin:4px 0 0; }
+    .auth-alt { margin-top:20px; }
+    .auth-alt a { color:#3C1B0F; font-weight:500; }
+  </style>
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-card">
+      <a href="{% url 'home' %}" aria-label="Coffee Tree home"><img src="{% static 'image/logo.png' %}" alt="Coffee Tree" height="48"></a>
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "accounts/base_auth.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+  <h1>Log in</h1>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    {% endfor %}
+    <input type="hidden" name="next" value="{{ next }}">
+    <button class="auth-btn" type="submit">Log in</button>
+  </form>
+  <p class="auth-alt">New here? <a href="{% url 'register' %}">Create an account</a></p>
+{% endblock %}

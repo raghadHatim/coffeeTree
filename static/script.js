@@ -9,8 +9,9 @@
   setPAR();
   if (mq.addEventListener) mq.addEventListener('change', setPAR);
 
-  if (window.matchMedia('(hover: none)').matches) {
-    document.getElementById('hint').textContent = 'Drag a finger through the branches.';
+  var hint = document.getElementById('hint');
+  if (hint && window.matchMedia('(hover: none)').matches) {
+    hint.textContent = 'Drag a finger through the branches.';
   }
 
   /* ---------- helpers ---------- */
@@ -113,17 +114,22 @@
     });
   }
 
-  /* ---------- berry ---------- */
-  function makeBerry(px, py, ox, oy, r) {
+  /* ---------- berry cluster: one group per cluster, flat colours ---------- */
+  var BERRY_FILLS = ['#c2342d', '#b02a28', '#cf4a31', '#9c2626', '#b9423a', '#aeb34e'];
+  function makeCluster(px, py, cl) {
     var g = el('g', { transform: 'translate(' + f(px) + ' ' + f(py) + ') rotate(0)' }, gBerry);
-    el('line', { x1: 0, y1: 0, x2: f(ox), y2: f(oy), stroke: '#6b4a2f', 'stroke-width': 1.4, 'stroke-linecap': 'round' }, g);
-    el('circle', { cx: f(ox), cy: f(oy), r: f(r), fill: 'url(#bg' + pickBerryGrad() + ')' }, g);
-    el('ellipse', { cx: f(ox - r * .3), cy: f(oy - r * .38), rx: f(r * .3), ry: f(r * .18), fill: 'rgba(255,255,255,.42)', transform: 'rotate(-30 ' + f(ox - r * .3) + ' ' + f(oy - r * .38) + ')' }, g);
-    items.push({
-      g: g, px: px, py: py, rot0: 0, dir0: Math.atan2(oy, ox),
-      ang: 0, vel: 0, ang2: 0, vel2: 0,
-      k: R(.07, .105), damp: R(.93, .95), fl: .5, gain: 1.15, moved: false
+    var stems = '', shine = '';
+    cl.forEach(function (c) {
+      stems += 'M0 0L' + f(c.ox) + ' ' + f(c.oy);
+      shine += 'M' + f(c.ox - c.rad * .3) + ' ' + f(c.oy - c.rad * .35) + 'h.1';
     });
+    el('path', { d: stems, stroke: '#6b4a2f', 'stroke-width': 1.4, fill: 'none', 'stroke-linecap': 'round' }, g);
+    cl.forEach(function (c) {
+      el('circle', { cx: f(c.ox), cy: f(c.oy), r: f(c.rad), fill: BERRY_FILLS[Math.floor(rnd() * BERRY_FILLS.length)] }, g);
+    });
+    el('path', { d: shine, stroke: 'rgba(255,255,255,.42)', 'stroke-width': 3.6, fill: 'none', 'stroke-linecap': 'round' }, g);
+    items.push({ g: g, px: px, py: py, rot0: 0, dir0: Math.PI / 2, ang: 0, vel: 0, ang2: 0, vel2: 0,
+      k: R(.07, .105), damp: R(.93, .95), fl: .5, gain: 1.3, moved: false });
   }
 
   /* ---------- branches ---------- */
@@ -186,7 +192,7 @@
           cl.push({ ox: Math.cos(th) * r, oy: Math.sin(th) * r * .9 + 6, rad: R(6.4, 8.8) * (1 - .15 * n.t) });
         }
         cl.sort(function (a, b) { return a.oy - b.oy; });
-        cl.forEach(function (c) { makeBerry(n.x, n.y, c.ox, c.oy, c.rad); });
+               makeCluster(n.x, n.y, cl);
       }
       s += R(gapMin, gapMax);
     }
@@ -245,7 +251,13 @@
   function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
   function lift() { lx = null; ly = null; }
 
+    var treeVisible = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { treeVisible = es[0].isIntersecting; }).observe(svg);
+  }
+
   window.addEventListener('pointermove', function (e) {
+   if (!treeVisible) return;
     var p = toSvg(e);
     if (!p) return;
     if (lx !== null) { accx += p.x - lx; accy += p.y - ly; }
@@ -622,5 +634,24 @@
   tabs.forEach(function (a) {
     var sec = document.getElementById(a.getAttribute('href').slice(1));
     if (sec) spy.observe(sec);
+  });
+})();
+(function () {
+  var toggle = document.getElementById('userToggle');
+  var menu = document.getElementById('userDropdown');
+  if (!toggle || !menu) return;
+
+  function close() { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
+  function open()  { menu.hidden = false; toggle.setAttribute('aria-expanded', 'true'); }
+
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (menu.hidden) { open(); } else { close(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!menu.contains(e.target)) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { close(); toggle.focus(); }
   });
 })();
