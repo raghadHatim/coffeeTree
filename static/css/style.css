@@ -673,6 +673,15 @@ h2 {
   cursor: pointer;
   transition: background-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
 }
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.popup:not([hidden]) { display: flex; }
 
 .user-dropdown svg {
   width: 18px; height: 18px; flex: none;

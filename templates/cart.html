@@ -13,65 +13,74 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Jost:wght@400;500&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  <link rel="stylesheet" href="{% static 'cart.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 </head>
 
 <body>
+<header class="site-header" id="top">
+        <a class="logo" href="{% url 'home' %}" aria-label="Coffee Tree home"><img src="{% static 'image/logo.png' %}"
+                alt="Coffee Tree logo"></a>
 
-  <header class="site-header" id="top">
-    <a class="logo" href="{% url 'home' %}" aria-label="Coffee Tree home"><img src="{% static 'image/logo.png' %}"
-        alt="Coffee Tree logo"></a>
+        <nav class="site-nav" id="siteNav" aria-label="Main">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'home' %}#about">About</a>
+            <a href="{% url 'shop' %}">Shop</a>
+            <a href="{% url 'orders' %}" aria-current="page">My Orders</a>
 
-    <nav class="site-nav" id="siteNav" aria-label="Main">
-      <a href="{% url 'home' %}#top">Home</a>
-      <a href="{% url 'home' %}#about">About</a>
-      <a href="{% url 'shop' %}">Shop</a>
-      <a href="{% url 'cart' %}">Cart</a>
-    </nav>
+        </nav>
 
-    <div class="header-actions">
-      {% if user.is_authenticated %}
-        <div class="user-menu">
-          <button type="button" class="signin user-toggle" id="userToggle"
-                  aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
-            <span>Hi, {{ user.first_name|default:user.username }}</span>
-          </button>
-          <div class="user-dropdown" id="userDropdown" hidden>
-<form method="post" action="{% url 'logout' %}">
-  {% csrf_token %}
-  <button type="submit">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg>
-    <span>Log out</span>
-  </button>
-</form>
-          </div>
+        <div class="header-actions">
+            {% if user.is_authenticated %}
+            <div class="user-menu">
+                <button type="button" class="signin user-toggle" id="userToggle" aria-haspopup="true"
+                    aria-expanded="false" aria-controls="userDropdown">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.6" />
+                        <path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4" />
+                    </svg>
+                    <span>Hi, {{ user.first_name|default:user.username }}</span>
+                </button>
+                <div class="user-dropdown" id="userDropdown" hidden>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+                                <path d="M16 8l4 4-4 4M20 12H9" />
+                            </svg>
+                            <span>Log out</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <a class="signin" href="{% url 'login' %}">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="8" r="3.6" />
+                    <path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4" />
+                </svg>
+                <span>Sign in</span>
+            </a>
+            {% endif %}
+            <a class="cart" href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}{% url 'login' %}{% endif %}" aria-label="Cart">
+                 <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 4h2.4l2.2 11h10.2l2-8H6.4" />
+                    <circle cx="9.5" cy="19.5" r="1.4" />
+                    <circle cx="17" cy="19.5" r="1.4" />
+                </svg>
+                <span class="cart-count">0</span>
+            </a>
+            <div class="lang" role="group" aria-label="Language">
+                <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
+                <button type="button" data-lang="ar" aria-pressed="false">AR</button>
+            </div>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false"
+                aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" />
+                </svg></button>
         </div>
-      {% else %}
-        <a class="signin" href="{% url 'login' %}">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
-          <span>Sign in</span>
-        </a>
-      {% endif %}
-      <a class="cart" href="#" aria-label="Cart">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M3 4h2.4l2.2 11h10.2l2-8H6.4" />
-          <circle cx="9.5" cy="19.5" r="1.4" />
-          <circle cx="17" cy="19.5" r="1.4" />
-        </svg>
-        <span class="cart-count">{{ total_items_count|default:0 }}</span>
-      </a>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="ar" aria-pressed="false">AR</button>
-      </div>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false"
-        aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" />
-        </svg></button>
-    </div>
-  </header>
+    </header>
 
   <!-- main start -->
   <main class="cart-page">
@@ -126,7 +135,7 @@
       <div class="cart-summary" id="cart-summary">
         <h2>Order Summary</h2>
         <p class="cart-total"><span>Total</span><strong id="cart-total">{{ total_price }} SAR</strong></p>
-        <a class="checkout-btn" href="#">Checkout</a>
+        <a class="checkout-btn" href="{%url 'checkout'%}">Checkout</a>
       </div>
     </section>
   </main>
@@ -135,8 +144,8 @@
   <footer class="site-footer" id="visit">
     <div class="footer-inner">
       <div class="footer-brand" data-reveal>
-        <a class="logo" href="#top" aria-label="Coffee Tree home"><img src="{% static 'image/logo_white.png' %}"
-            alt="Coffee Tree"></a>
+        <a class="logo" href="{% url 'home' %}" aria-label="Coffee Tree home"><img
+            src="{% static 'image/logo_white.png' %}" alt="Coffee Tree"></a>
         <p>Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches</p>
       </div>
       <nav aria-label="Shop" data-reveal>
@@ -153,7 +162,8 @@
           <li><a href="{% url 'home' %}#home">Home</a></li>
           <li><a href="{% url 'home' %}#about">About</a></li>
           <li><a href="{% url 'shop' %}">Shop</a></li>
-          <li><a href="{% url 'cart' %}">Cart</a></li>
+          <li><a href="{% url 'orders' %}">My Orders</a></li>
+
         </ul>
       </nav>
       <div class="footer-visit" data-reveal>
@@ -169,8 +179,8 @@
     </div>
   </footer>
 
-  <script src="{% static 'script.js' %}"></script>
-  <script src="{% static 'cart.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/cart.js' %}"></script>
 </body>
 
 </html>

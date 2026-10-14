@@ -128,8 +128,10 @@
       el('circle', { cx: f(c.ox), cy: f(c.oy), r: f(c.rad), fill: BERRY_FILLS[Math.floor(rnd() * BERRY_FILLS.length)] }, g);
     });
     el('path', { d: shine, stroke: 'rgba(255,255,255,.42)', 'stroke-width': 3.6, fill: 'none', 'stroke-linecap': 'round' }, g);
-    items.push({ g: g, px: px, py: py, rot0: 0, dir0: Math.PI / 2, ang: 0, vel: 0, ang2: 0, vel2: 0,
-      k: R(.07, .105), damp: R(.93, .95), fl: .5, gain: 1.3, moved: false });
+    items.push({
+      g: g, px: px, py: py, rot0: 0, dir0: Math.PI / 2, ang: 0, vel: 0, ang2: 0, vel2: 0,
+      k: R(.07, .105), damp: R(.93, .95), fl: .5, gain: 1.3, moved: false
+    });
   }
 
   /* ---------- branches ---------- */
@@ -192,7 +194,7 @@
           cl.push({ ox: Math.cos(th) * r, oy: Math.sin(th) * r * .9 + 6, rad: R(6.4, 8.8) * (1 - .15 * n.t) });
         }
         cl.sort(function (a, b) { return a.oy - b.oy; });
-               makeCluster(n.x, n.y, cl);
+        makeCluster(n.x, n.y, cl);
       }
       s += R(gapMin, gapMax);
     }
@@ -251,13 +253,13 @@
   function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
   function lift() { lx = null; ly = null; }
 
-    var treeVisible = true;
+  var treeVisible = true;
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (es) { treeVisible = es[0].isIntersecting; }).observe(svg);
   }
 
   window.addEventListener('pointermove', function (e) {
-   if (!treeVisible) return;
+    if (!treeVisible) return;
     var p = toSvg(e);
     if (!p) return;
     if (lx !== null) { accx += p.x - lx; accy += p.y - ly; }
@@ -617,6 +619,9 @@
             btn.textContent = btn.dataset.label;
             btn.classList.remove('added');
           }, 1400);
+        } else if (data.status === 'auth_required') {
+          var popup = document.getElementById('authPopup');
+          if (popup) popup.hidden = false;
         }
       })
       .catch(err => console.log('Error:', err));
@@ -642,7 +647,7 @@
   if (!toggle || !menu) return;
 
   function close() { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); }
-  function open()  { menu.hidden = false; toggle.setAttribute('aria-expanded', 'true'); }
+  function open() { menu.hidden = false; toggle.setAttribute('aria-expanded', 'true'); }
 
   toggle.addEventListener('click', function (e) {
     e.stopPropagation();

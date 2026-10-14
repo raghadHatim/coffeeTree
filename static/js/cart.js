@@ -2,13 +2,12 @@
 (function () {
   var rows = document.getElementById('cart-items');
   var totalEl = document.getElementById('cart-total');
-  var countEl = document.getElementById('cart-count');
+  var countEl = document.getElementById('.cart-count');
   var emptyEl = document.getElementById('cart-empty');
   var summaryEl = document.getElementById('cart-summary');
   if (!rows) return;
 
-  function money(n) { return n.toFixed(2) + ' $'; }
-
+  function money(n) { return n.toFixed(2) + ' SAR'; }
   function update() {
     var total = 0, count = 0;
     rows.querySelectorAll('.cart-row').forEach(function (row) {
