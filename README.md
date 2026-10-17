@@ -21,7 +21,6 @@ Admin panel to manage products, categories, shipping companies and order statuse
 | **Framework** | Django |
 | **Database** | SQLite |
 | **Frontend** | HTML, CSS, JavaScript |
-| **Fonts** | Google Fonts |
 | **Version Control** | Git, GitHub |
 
 ## 🗄️ Database Design
