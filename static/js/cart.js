@@ -2,13 +2,12 @@
 (function () {
   var rows = document.getElementById('cart-items');
   var totalEl = document.getElementById('cart-total');
-  var countEl = document.getElementById('cart-count');
+  var countEl = document.getElementById('.cart-count');
   var emptyEl = document.getElementById('cart-empty');
   var summaryEl = document.getElementById('cart-summary');
   if (!rows) return;
 
-  // currency comes from the page (SAR / ر.س), so it follows the chosen language
-  var currency = (document.querySelector('.cart-page') || document.body).dataset.currency || 'SAR';
+   var currency = (document.querySelector('.cart-page') || document.body).dataset.currency || 'SAR';
   function money(n) { return n.toFixed(2) + ' ' + currency; }
 
   function update() {

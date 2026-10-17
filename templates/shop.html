@@ -21,7 +21,7 @@
   <link rel="apple-touch-icon" href="{% static 'image/logo.png' %}">
   <meta name="theme-color" content="#F1ECDB">
   <link rel="stylesheet" href="{% static 'style.css' %}">
-  <link rel="stylesheet" href="{% static 'rtl.css' %}">
+   <link rel="stylesheet" href="{% static 'rtl.css' %}">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 
@@ -35,6 +35,7 @@
       <a href="{% url 'home' %}#about">{% trans "About" %}</a>
       <a href="{% url 'shop' %}" aria-current="page">{% trans "Shop" %}</a>
       <a href="{% url 'cart' %}">{% trans "Cart" %}</a>
+      <a href="{% url 'orders' %}">{% trans "My Orders" %}</a>
     </nav>
 
     <div class="header-actions">
@@ -328,6 +329,7 @@
           <li><a href="{% url 'home' %}#about">{% trans "About" %}</a></li>
           <li><a href="{% url 'shop' %}">{% trans "Shop" %}</a></li>
           <li><a href="{% url 'cart' %}">{% trans "Cart" %}</a></li>
+           <li><a href="{% url 'orders' %}">{% trans "My Orders" %}</a></li>
 
         </ul>
       </nav>
@@ -344,7 +346,43 @@
     </div>
   </footer>
 
-  <script src="{% static 'script.js' %}" defer></script>
+  <div id="authPopup" class="popup" hidden>
+      <div style="background: var(--bg); padding: 30px; border-radius: 20px; border: 1px solid var(--ink); text-align: center; max-width: 320px;">
+          <h3 style="margin-top: 0; font-family: 'Fraunces', serif; color: var(--bow);">Notice</h3>
+          <p style="margin-bottom: 20px;">Please sign in first to add items to your cart.</p>
+          <div style="display: flex; gap: 10px; justify-content: center;">
+              <a href="{% url 'login' %}" class="btn" style="padding: 10px 20px; font-size: 0.9rem; text-decoration: none;">Sign in</a>
+              <button type="button" id="closePopup" class="signin" style="padding: 10px 20px;">Cancel</button>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const popup = document.getElementById('authPopup');
+          const closeBtn = document.getElementById('closePopup');
+
+          function closePopup() {
+              if (popup) {
+                  popup.hidden = true;
+              }
+          }
+          if (closeBtn) {
+              closeBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  closePopup();
+              });
+          }
+          if (popup) {
+              popup.addEventListener('click', function(e) {
+                  if (e.target === popup) {
+                      closePopup();
+                  }
+              });
+          }
+      });
+  </script>
+  <script src="{% static 'js/script.js' %}" defer></script>
 </body>
 
 </html>
