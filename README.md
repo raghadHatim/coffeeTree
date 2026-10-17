@@ -40,27 +40,28 @@ Admin panel to manage products, categories, shipping companies and order statuse
 ## 🚀 Getting Started
 
 Follow these steps to run the project locally:
-# 1. Clone the repository
+## 1. Clone the repository
 git clone https://github.com/raghadHatim/coffeeTree.git
 cd coffeeTree
 
-# 2. Create and activate a virtual environment
+## 2. Create and activate a virtual environment
 python -m venv venv
 venv\Scripts\activate            # macOS / Linux: source venv/bin/activate
 
-# 3. Install the requirements
+## 3. Install the requirements
 pip install -r requirements.txt
 
-# 4. Create the database tables
+## 4. Create the database tables
 python manage.py migrate
 
-# 5. Create an admin account
+## 5. Create an admin account
 python manage.py createsuperuser
 
-# 6. Run the server
+## 6. Run the server
 python manage.py runserver
 
 Open http://127.0.0.1:8000/ for the store and http://127.0.0.1:8000/admin/ for the admin panel.
+
 
 ## 👥 Team
 
