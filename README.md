@@ -3,15 +3,18 @@ An online store for coffee beans, brewing tools and coffee mugs, built with Djan
 Customers can browse the shop, add products to a cart, check out with a shipping company of their choice and track their order status. 
 Store owners manage everything from the Django admin panel.
 
-## Features
-Home page with an introduction to the store.
-Shop page with products grouped by category (whole beans, coffee tools, coffee mugs).
-Sign in / log out with Django authentication.
-Cart for signed-in users. Guests who try to add a product see a pop-up asking them to sign in.
-Checkout: customer details (name, phone, city, address), shipping company selection and an automatic total (subtotal + shipping).
-Orders are saved with the price at the time of purchase, and the cart is emptied after confirmation.
-"My Orders" page with order number, date, total and status.
-Admin panel to manage products, categories, shipping companies and order statuses.
+## ✨ Features Overview
+
+| Feature | Description |
+| :--- | :--- |
+| **Home Page** | Landing page introducing the store. |
+| **Product Catalog** | Filtered by categories: *Whole Beans*, *Coffee Tools*, and *Coffee Mugs*. |
+| **Authentication** | Django-powered user login, registration, and session management. |
+| **Shopping Cart** | Cart management with an interactive sign-in modal for guest users. |
+| **Checkout Flow** | Captures delivery details and calculates total (`Subtotal + Shipping`). |
+| **Price Freezing** | Stores product prices at the exact time of purchase and empties the cart. |
+| **Order Tracking** | "My Orders" page displaying order number, date, total cost, and status. |
+| **Admin Control** | Full CRUD for products, categories, shipping companies, and order statuses. |
 
 ## 🛠️ Tech Stack
 
