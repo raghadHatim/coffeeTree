@@ -111,15 +111,13 @@
           </tr>
           {% empty %}
           <tr>
-            <td colspan="4" style="text-align: center; padding: 20px;">{% trans "Your cart is empty." %}</td>
+            <td colspan="4" style="text-align: center; padding: 20px;">{% trans "Your cart is empty."%}
+              <br> <a class="link" href="{% url 'shop' %}">{% trans "Browse the shop" %}</a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-
-      <p class="cart-empty" id="cart-empty" hidden>
-        {% trans "Your cart is empty." %} <a class="link" href="{% url 'shop' %}">{% trans "Browse the shop" %}</a>
-      </p>
 
       <div class="cart-summary" id="cart-summary">
         <h2>{% trans "Order Summary" %}</h2>

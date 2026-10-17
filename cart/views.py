@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from products.models import Product
 from django.shortcuts import get_object_or_404, redirect
 
-# @login_required
 def cart_view(request):
     if not request.user.is_authenticated:
         return redirect('login')

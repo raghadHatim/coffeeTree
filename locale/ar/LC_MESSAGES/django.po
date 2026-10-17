@@ -325,7 +325,7 @@ msgid "Product"
 msgstr "المنتج"
 
 #, python-format
-msgid "Qty: %(q)s"
+msgid "Quantity: %(q)s"
 msgstr "الكمية: %(q)s"
 
 msgid "Quantity"
