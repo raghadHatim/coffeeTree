@@ -16,12 +16,25 @@ html[lang="ar"] h1 { line-height: 1.25; }
 html[lang="ar"] h2, html[lang="ar"] h3 { line-height: 1.35; }
 
 /* the tree moves to the left (the script mirrors the drawing itself) */
-html[dir="rtl"] .tree { right: auto; left: 0; }
+/* في ملف rtl.css */
+/* في ملف rtl.css */
+html[dir="rtl"] .tree {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  width: 62vw !important;
+  height: 100% !important;
+}
 
 /* the photo strip keeps left-to-right geometry (so the loop stays seamless)
    and simply runs the other way; the captions stay Arabic */
 html[dir="rtl"] .tape { direction: ltr; }
-html[dir="rtl"] .tape-track { animation-direction: reverse; }
+/* في ملف rtl.css */
+html[dir="rtl"] .tape-track {
+  animation: tape 40s linear infinite;
+  animation-direction: normal; /* أو reverse حسب الاتجاه المطلوب للمنتجات */
+}
 html[dir="rtl"] .tape-group figcaption { direction: rtl; }
 
 /* things that were pinned with left / right */

@@ -9,7 +9,7 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
 msgid "123 Coffee Street, Beanville"
-msgstr "123 شارع القهوة، مكة"
+msgstr "123 شارع القهوة، بينفيل"
 
 msgid "2026 Coffee Tree. All rights reserved."
 msgstr "2026 شجرة القهوة. جميع الحقوق محفوظة."
@@ -26,17 +26,14 @@ msgstr "كومة من الحبوب المحمّصة طازجة"
 msgid "About"
 msgstr "قصتنا"
 
-msgid "Account"
-msgstr "الحساب"
-
 msgid "Action"
 msgstr "الإجراء"
 
 msgid "Add to cart"
 msgstr "أضف إلى السلة"
 
-msgid "Already have an account?"
-msgstr "لديك حساب بالفعل؟"
+msgid "Address (district, street)"
+msgstr "العنوان (الحي، الشارع)"
 
 msgid "Antigua · hazelnut, cocoa, brown sugar"
 msgstr "أنتيغوا · بندق، كاكاو، سكر بني"
@@ -47,7 +44,7 @@ msgid ""
 "roastery, but nurtured on highland slopes under open skies, branch by "
 "branch."
 msgstr ""
-"في <strong>شجرة القهوة</strong> تبدأ حكايتنا من الأصل: من الشجرة المثمرة"
+"في <strong>شجرة القهوة</strong> تبدأ حكايتنا من الأصل: من الشجرة الحيّة "
 "نفسها. نؤمن أن القهوة الاستثنائية لا تُصنع في المحمصة، بل تنمو وتنضج على "
 "سفوح المرتفعات تحت سماء مفتوحة، وتكتسب نكهتها موسماً بعد موسم."
 
@@ -68,6 +65,9 @@ msgstr "العصفور الأزرق"
 
 msgid "Blue Finch Kenya AB coffee bag"
 msgstr "كيس قهوة العصفور الأزرق من كينيا"
+
+msgid "Browse Shop"
+msgstr "تصفّح المتجر"
 
 msgid "Browse the shop"
 msgstr "تصفّح المتجر"
@@ -92,6 +92,9 @@ msgstr ""
 "فنجانك الصباحي، نعتني بكل خطوة، ونحمّص حبوبنا كل أسبوع بدفعات صغيرة وبعناية "
 "الحِرفيين."
 
+msgid "Cancel"
+msgstr "إلغاء"
+
 msgid "Cart"
 msgstr "السلة"
 
@@ -100,6 +103,9 @@ msgstr "الأقسام"
 
 msgid "Checkout"
 msgstr "إتمام الطلب"
+
+msgid "City"
+msgstr "المدينة"
 
 msgid "Coffee Tool Kit"
 msgstr "طقم أدوات القهوة"
@@ -137,17 +143,20 @@ msgstr "تصميم مدمج يناسب الحقيبة والرف على حد س�
 msgid "Company"
 msgstr "الشركة"
 
+msgid "Confirm Order"
+msgstr "تأكيد الطلب"
+
 msgid "Cream finish with a blossom and cherry print"
 msgstr "بلون كريمي مزيّن بنقوش الأزهار وثمار البن"
 
-msgid "Create account"
-msgstr "إنشاء حساب"
-
-msgid "Create an account"
-msgstr "أنشئ حسابك"
+msgid "Customer Details"
+msgstr "بيانات العميل"
 
 msgid "Decrease quantity"
 msgstr "إنقاص الكمية"
+
+msgid "Delivered"
+msgstr "تم التوصيل"
 
 msgid "Digital Coffee Scale"
 msgstr "ميزان القهوة الرقمي"
@@ -161,11 +170,17 @@ msgstr "أسِرّة التجفيف"
 msgid "Ecuador · Dark roast · 240 g"
 msgstr "الإكوادور · تحميص داكن · 240 جم"
 
+msgid "Edit cart"
+msgstr "تعديل السلة"
+
 msgid "El Salvador · Medium roast · 230 g"
 msgstr "السلفادور · تحميص متوسط · 230 جم"
 
-msgid "Email"
-msgstr "البريد الإلكتروني"
+msgid "Enter your detailed address"
+msgstr "اكتب عنوانك بالتفصيل"
+
+msgid "Enter your full name"
+msgstr "اكتب اسمك الكامل"
 
 msgid "Every bean tells the story of its tree."
 msgstr "كل حبّة تروي حكاية شجرتها."
@@ -176,7 +191,7 @@ msgstr "كل ما تحتاجه لفنجان أجمل."
 msgid "Forest Green Tumbler"
 msgstr "كوب حراري أخضر غابي"
 
-msgid "Full name"
+msgid "Full Name"
 msgstr "الاسم الكامل"
 
 msgid "Green leather case · Complete set"
@@ -222,9 +237,6 @@ msgstr "اللغة"
 msgid "Limited"
 msgstr "كمية محدودة"
 
-msgid "Log in"
-msgstr "تسجيل الدخول"
-
 msgid "Log out"
 msgstr "تسجيل الخروج"
 
@@ -243,14 +255,20 @@ msgstr "بلون عنابي مطفي مع شعار الشجرة الذهبي"
 msgid "Menu"
 msgstr "القائمة"
 
+msgid "My Orders"
+msgstr "طلباتي"
+
 msgid "Natural · fig, milk chocolate, peanut"
 msgstr "معالجة طبيعية · تين، شوكولاتة بالحليب، فول سوداني"
 
 msgid "New"
 msgstr "جديد"
 
-msgid "New here?"
-msgstr "هل أنت جديد هنا؟"
+msgid "No shipping options available."
+msgstr "لا توجد خيارات شحن متاحة حالياً."
+
+msgid "Notice"
+msgstr "تنبيه"
 
 msgid "Nutty Squirrel"
 msgstr "سنجاب المكسّرات"
@@ -273,14 +291,23 @@ msgstr "رحيق الببغاء"
 msgid "Parrot Nectar El Salvador coffee bag"
 msgstr "كيس قهوة رحيق الببغاء من السلفادور"
 
+msgid "Payment method: Cash on delivery"
+msgstr "طريقة الدفع: الدفع عند الاستلام"
+
 msgid "Peru · Dark roast · 255 g"
 msgstr "بيرو · تحميص داكن · 255 جم"
 
 msgid "Peru · Medium roast · 250 g"
 msgstr "بيرو · تحميص متوسط · 250 جم"
 
+msgid "Phone Number"
+msgstr "رقم الجوال"
+
 msgid "Photos of our coffee crops"
 msgstr "صور من مزارع القهوة لدينا"
+
+msgid "Please sign in first to add items to your cart."
+msgstr "سجّل الدخول أولاً لتتمكن من إضافة المنتجات إلى سلتك."
 
 msgid "Portable Grinder"
 msgstr "مطحنة قهوة محمولة"
@@ -288,11 +315,18 @@ msgstr "مطحنة قهوة محمولة"
 msgid "Portable steel coffee grinder"
 msgstr "مطحنة قهوة فولاذية محمولة"
 
+msgid "Preparing"
+msgstr "قيد التجهيز"
+
 msgid "Price"
 msgstr "السعر"
 
 msgid "Product"
 msgstr "المنتج"
+
+#, python-format
+msgid "Qty: %(q)s"
+msgstr "الكمية: %(q)s"
 
 msgid "Quantity"
 msgstr "الكمية"
@@ -327,6 +361,12 @@ msgstr "ر.س"
 msgid "SAR %(p)s"
 msgstr "%(p)s ر.س"
 
+msgid "Shipping"
+msgstr "الشحن"
+
+msgid "Shipping Options"
+msgstr "خيارات الشحن"
+
 msgid "Shop"
 msgstr "المتجر"
 
@@ -338,9 +378,6 @@ msgstr "سلة التسوق"
 
 msgid "Sign in"
 msgstr "تسجيل الدخول"
-
-msgid "Sign up"
-msgstr "سجّل الآن"
 
 msgid "Simple, well-made gear for brewing at home."
 msgstr "أدوات بسيطة متقنة الصنع، تمنحك تحضيراً احترافياً في بيتك."
@@ -374,11 +411,11 @@ msgstr ""
 msgid "Steel and walnut · Digital display"
 msgstr "فولاذ وخشب الجوز · شاشة رقمية"
 
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
 msgid "The Shop"
 msgstr "المتجر"
-
-msgid "This email is already registered."
-msgstr "هذا البريد الإلكتروني مسجّل لدينا مسبقاً."
 
 msgid "Total"
 msgstr "الإجمالي"
@@ -413,9 +450,6 @@ msgstr "كل أسبوع"
 msgid "Weekly roast"
 msgstr "التحميص الأسبوعي"
 
-msgid "Welcome to Coffee Tree!"
-msgstr "أهلاً بك في شجرة القهوة!"
-
 msgid "White coffee blossoms"
 msgstr "أزهار شجرة البن البيضاء"
 
@@ -429,5 +463,57 @@ msgstr ""
 "حبوب تُحمَّص كل أسبوع بدفعات صغيرة، وإلى جانبها الأدوات والأكواب التي تكتمل "
 "بها متعة قهوتك."
 
+msgid "You have no orders yet."
+msgstr "لا توجد لديك طلبات حتى الآن."
+
+msgid "Your cart is empty,<br>You cannot proceed to checkout !"
+msgstr "سلّتك فارغة،<br>لا يمكنك إتمام الطلب الآن."
+
 msgid "Your cart is empty."
 msgstr "سلّتك فارغة حالياً."
+
+msgid "e.g. Riyadh"
+msgstr "مثال: الرياض"
+
+#, python-format
+msgid "%(counter)s day"
+msgid_plural "%(counter)s days"
+msgstr[0] "%(counter)s يوم"
+msgstr[1] "يوم واحد"
+msgstr[2] "يومان"
+msgstr[3] "%(counter)s أيام"
+msgstr[4] "%(counter)s يوماً"
+msgstr[5] "%(counter)s يوم"
+
+msgid "Account"
+msgstr "الحساب"
+
+msgid "Already have an account?"
+msgstr "لديك حساب بالفعل؟"
+
+msgid "Create account"
+msgstr "إنشاء حساب"
+
+msgid "Create an account"
+msgstr "أنشئ حسابك"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+msgid "New here?"
+msgstr "هل أنت جديد هنا؟"
+
+msgid "Sign up"
+msgstr "سجّل الآن"
+
+msgid "This email is already registered."
+msgstr "هذا البريد الإلكتروني مسجّل لدينا مسبقاً."
+
+msgid "Welcome to Coffee Tree!"
+msgstr "أهلاً بك في شجرة القهوة!"

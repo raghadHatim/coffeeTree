@@ -1,32 +1,26 @@
 {% load static %}
-
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as IS_RTL %}
-
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if IS_RTL %}rtl{% else %}ltr{% endif %}">
-
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{% trans "Shopping Cart" %} | {% trans "Coffee Tree" %}</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Jost:wght@400;500&display=swap"
-    rel="stylesheet">
-{% if IS_RTL %}<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">{% endif %}
-
-  <link rel="stylesheet" href="{% static 'style.css' %}">
-  <link rel="stylesheet" href="{% static 'cart.css' %}">
-  <link rel="stylesheet" href="{% static 'rtl.css' %}">
-
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Jost:wght@400;500&family=Noto+Naskh+Arabic:wght@500&display=swap" rel="stylesheet">
+  {% if IS_RTL %}<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">{% endif %}
+  <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}">
+  <link rel="apple-touch-icon" href="{% static 'image/logo.png' %}">
+  <meta name="theme-color" content="#F1ECDB">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+  <link rel="stylesheet" href="{% static 'css/rtl.css' %}">
 </head>
 
 <body>
-
   <header class="site-header" id="top">
     <a class="logo" href="{% url 'home' %}" aria-label="{% trans 'Coffee Tree home' %}"><img src="{% static 'image/logo.png' %}"
         alt="{% trans 'Coffee Tree logo' %}"></a>
@@ -35,82 +29,45 @@
       <a href="{% url 'home' %}#top">{% trans "Home" %}</a>
       <a href="{% url 'home' %}#about">{% trans "About" %}</a>
       <a href="{% url 'shop' %}">{% trans "Shop" %}</a>
-      
-      <a href="{% url 'orders' %}" aria-current="page">{% trans "My Orders" %}</a>
-
+      <a href="{% url 'orders' %}">{% trans "My Orders" %}</a>
     </nav>
 
     <div class="header-actions">
       {% if user.is_authenticated %}
         <div class="user-menu">
-                <button type="button" class="signin user-toggle" id="userToggle" aria-haspopup="true"
-                    aria-expanded="false" aria-controls="userDropdown">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="3.6" />
-                        <path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4" />
-                    </svg>
-                    <span>Hi, {{ user.first_name|default:user.username }}</span>
-                </button>
-                <div class="user-dropdown" id="userDropdown" hidden>
-                    <form method="post" action="{% url 'logout' %}">
-                        {% csrf_token %}
-                        <button type="submit">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
-                                <path d="M16 8l4 4-4 4M20 12H9" />
-                            </svg>
-                            <span>{% trans "Log out" %}</span>
-                        </button>
-                    </form>
-                </div>
+          <button type="button" class="signin user-toggle" id="userToggle"
+                  aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
+            <span>{% blocktrans with name=user.first_name|default:user.username %}Hi, {{ name }}{% endblocktrans %}</span>
+          </button>
+          <div class="user-dropdown" id="userDropdown" hidden>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg>
+                <span>{% trans "Log out" %}</span>
+              </button>
+            </form>
+          </div>
         </div>
-            {% else %}
-            <a class="signin" href="{% url 'login' %}">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="8" r="3.6" />
-                    <path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4" />
-                </svg>
-                <span>Sign in</span>
-            </a>
-            {% endif %}            {% else %}
-            <a class="signin" href="{% url 'login' %}">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="8" r="3.6" />
-                    <path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4" />
-                </svg>
-                <span>Sign in</span>
-            </a>
-            {% endif %}            {% else %}
-            <a class="signin" href="{% url 'login' %}">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="8" r="3.6" />
-                    <path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4" />
-                </svg>
-                <span>{% trans "Sign in" %}</span>
-            </a>
-            {% endif %}
-            <a class="cart" href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}{% url 'login' %}{% endif %}" aria-label="{% trans 'Cart' %}">
-                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 4h2.4l2.2 11h10.2l2-8H6.4" />
-                    <circle cx="9.5" cy="19.5" r="1.4" />
-                    <circle cx="17" cy="19.5" r="1.4" />
-                </svg>
-                        <span class="cart-count">{{ total_items_count|default:0 }}</span>
-
-            </a>
-            <form class="lang" action="{% url 'set_language' %}" method="post" role="group" aria-label="{% trans 'Language' %}">
+      {% else %}
+        <a class="signin" href="{% url 'login' %}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
+          <span>{% trans "Sign in" %}</span>
+        </a>
+      {% endif %}
+      <a class="cart" href="{% if user.is_authenticated %}{% url 'cart' %}{% else %}{% url 'login' %}{% endif %}" aria-label="{% trans 'Cart' %}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2.4l2.2 11h10.2l2-8H6.4"/><circle cx="9.5" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg>
+        <span class="cart-count">{{ total_items_count|default:0 }}</span>
+      </a>
+      <form class="lang" action="{% url 'set_language' %}" method="post" role="group" aria-label="{% trans 'Language' %}">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ request.get_full_path }}">
         <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}" aria-pressed="{% if LANGUAGE_CODE == 'en' %}true{% else %}false{% endif %}">EN</button>
         <button type="submit" name="language" value="ar" class="{% if LANGUAGE_CODE == 'ar' %}active{% endif %}" aria-pressed="{% if LANGUAGE_CODE == 'ar' %}true{% else %}false{% endif %}">AR</button>
       </form>
-            <button class="menu-toggle" id="menuToggle" type="button" aria-label="{% trans 'Menu' %}" aria-expanded="false"
-        aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" />
-        </svg></button>
-
-      
-
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="{% trans 'Menu' %}" aria-expanded="false"
+        aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </div>
   </header>
 
@@ -176,8 +133,7 @@
   <footer class="site-footer" id="visit">
     <div class="footer-inner">
       <div class="footer-brand" data-reveal>
-        <a class="logo" href="#top" aria-label="{% trans 'Coffee Tree home' %}"><img src="{% static 'image/logo_white.png' %}"
-            alt="{% trans 'Coffee Tree' %}"></a>
+        <a class="logo" href="{% url 'home' %}#top" aria-label="{% trans 'Coffee Tree home' %}"><img src="{% static 'image/logo_white.png' %}" alt="{% trans 'Coffee Tree' %}"></a>
         <p>{% trans "Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches" %}</p>
       </div>
       <nav aria-label="{% trans 'Shop' %}" data-reveal>
@@ -194,7 +150,6 @@
           <li><a href="{% url 'home' %}#home">{% trans "Home" %}</a></li>
           <li><a href="{% url 'home' %}#about">{% trans "About" %}</a></li>
           <li><a href="{% url 'shop' %}">{% trans "Shop" %}</a></li>
-        
           <li><a href="{% url 'orders' %}">{% trans "My Orders" %}</a></li>
         </ul>
       </nav>
@@ -210,9 +165,7 @@
       <p>{% trans "Roasted every Tuesday. Shipped on Wednesday." %}</p>
     </div>
   </footer>
-
   <script src="{% static 'js/script.js' %}"></script>
   <script src="{% static 'js/cart.js' %}"></script>
 </body>
-
 </html>

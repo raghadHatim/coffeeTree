@@ -69,7 +69,7 @@
   }
 
   /* ---------- layers ---------- */
-  var root = el('g', RTL ? { transform: 'translate(900 0) scale(-1 1)' } : {}, svg);   // mirrored for RTL
+  var root = el('g', RTL ? { transform: 'translate(350 0) scale(-1 1)' } : {}, svg);   // mirrored for RTL
   var gBack = el('g', {}, root);
   var gBranch = el('g', {}, root);
   var gBerry = el('g', {}, root);
