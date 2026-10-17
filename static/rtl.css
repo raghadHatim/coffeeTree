@@ -1,0 +1,37 @@
+/* =====================================================
+   Arabic / RTL overrides - load AFTER style.css and cart.css
+   ===================================================== */
+
+/* Arabic font (Cairo is loaded by the templates only when the page is RTL) */
+html[lang="ar"] body,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3,
+html[lang="ar"] .price, html[lang="ar"] .cart-price, html[lang="ar"] .cart-total strong {
+  font-family: "Cairo", "Noto Naskh Arabic", system-ui, sans-serif;
+}
+/* Arabic letters must stay connected: no letter-spacing, no uppercase */
+html[lang="ar"] * { letter-spacing: 0 !important; text-transform: none !important; }
+html[lang="ar"] h1 { line-height: 1.25; }
+html[lang="ar"] h2, html[lang="ar"] h3 { line-height: 1.35; }
+
+/* the tree moves to the left (the script mirrors the drawing itself) */
+html[dir="rtl"] .tree { right: auto; left: 0; }
+
+/* the photo strip keeps left-to-right geometry (so the loop stays seamless)
+   and simply runs the other way; the captions stay Arabic */
+html[dir="rtl"] .tape { direction: ltr; }
+html[dir="rtl"] .tape-track { animation-direction: reverse; }
+html[dir="rtl"] .tape-group figcaption { direction: rtl; }
+
+/* things that were pinned with left / right */
+html[dir="rtl"] .cart-count { right: auto; left: -4px; }
+html[dir="rtl"] .badge { left: auto; right: 14px; }
+
+/* cart table */
+html[dir="rtl"] .cart-table th { text-align: right; }
+html[dir="rtl"] .cart-table th:nth-child(n+2),
+html[dir="rtl"] .cart-table td:nth-child(n+2) { text-align: center; }
+@media (max-width: 640px) {
+  html[dir="rtl"] .cart-table td { text-align: right !important; }
+}

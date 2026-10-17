@@ -1,33 +1,40 @@
 {% load static %}
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as IS_RTL %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if IS_RTL %}rtl{% else %}ltr{% endif %}">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Shop | Coffee Tree</title>
+  <title>{% trans "Shop" %} | {% trans "Coffee Tree" %}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Jost:wght@400;500&family=Noto+Naskh+Arabic:wght@500&display=swap"
     rel="stylesheet">
+{% if IS_RTL %}<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">{% endif %}
   <link rel="icon" type="image/png" href="{% static 'image/logo.png' %}">
   <link rel="apple-touch-icon" href="{% static 'image/logo.png' %}">
   <meta name="theme-color" content="#F1ECDB">
   <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="{% static 'rtl.css' %}">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
   <header class="site-header" id="top">
-    <a class="logo" href="{% url 'home' %}" aria-label="Coffee Tree home"><img src="{% static 'image/logo.png' %}"
-        alt="Coffee Tree logo"></a>
+    <a class="logo" href="{% url 'home' %}" aria-label="{% trans 'Coffee Tree home' %}"><img src="{% static 'image/logo.png' %}"
+        alt="{% trans 'Coffee Tree logo' %}"></a>
 
-    <nav class="site-nav" id="siteNav" aria-label="Main">
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'home' %}#about">About</a>
-      <a href="{% url 'shop' %}" aria-current="page">Shop</a>
-      <a href="{% url 'cart' %}">Cart</a>
+    <nav class="site-nav" id="siteNav" aria-label="{% trans 'Main' %}">
+      <a href="{% url 'home' %}">{% trans "Home" %}</a>
+      <a href="{% url 'home' %}#about">{% trans "About" %}</a>
+      <a href="{% url 'shop' %}" aria-current="page">{% trans "Shop" %}</a>
+      <a href="{% url 'cart' %}">{% trans "Cart" %}</a>
     </nav>
 
     <div class="header-actions">
@@ -36,14 +43,14 @@
           <button type="button" class="signin user-toggle" id="userToggle"
                   aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
-            <span>Hi, {{ user.first_name|default:user.username }}</span>
+            <span>{% blocktrans with name=user.first_name|default:user.username %}Hi, {{ name }}{% endblocktrans %}</span>
           </button>
           <div class="user-dropdown" id="userDropdown" hidden>
 <form method="post" action="{% url 'logout' %}">
   {% csrf_token %}
   <button type="submit">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg>
-    <span>Log out</span>
+    <span>{% trans "Log out" %}</span>
   </button>
 </form>
           </div>
@@ -51,10 +58,10 @@
       {% else %}
         <a class="signin" href="{% url 'login' %}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
-          <span>Sign in</span>
+          <span>{% trans "Sign in" %}</span>
         </a>
       {% endif %}
-      <a class="cart" href="{% url 'cart' %}" aria-label="Cart">
+      <a class="cart" href="{% url 'cart' %}" aria-label="{% trans 'Cart' %}">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3 4h2.4l2.2 11h10.2l2-8H6.4" />
           <circle cx="9.5" cy="19.5" r="1.4" />
@@ -62,11 +69,13 @@
         </svg>
         <span class="cart-count">0</span>
       </a>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="ar" aria-pressed="false">AR</button>
-      </div>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false"
+      <form class="lang" action="{% url 'set_language' %}" method="post" role="group" aria-label="{% trans 'Language' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}" aria-pressed="{% if LANGUAGE_CODE == 'en' %}true{% else %}false{% endif %}">EN</button>
+        <button type="submit" name="language" value="ar" class="{% if LANGUAGE_CODE == 'ar' %}active{% endif %}" aria-pressed="{% if LANGUAGE_CODE == 'ar' %}true{% else %}false{% endif %}">AR</button>
+      </form>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="{% trans 'Menu' %}" aria-expanded="false"
         aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" />
         </svg></button>
@@ -75,109 +84,109 @@
 
   <main>
     <section class="shop-hero">
-      <p class="eyebrow">The Shop</p>
-      <h1>Everything for a better cup.</h1>
-      <p class="lead">Whole beans roasted every week in small batches, plus the tools and mugs to enjoy them.</p>
-      <nav class="shop-tabs" aria-label="Categories">
-        <a href="#beans">Whole beans <span class="count">6</span></a>
-        <a href="#tools">Coffee tools <span class="count">3</span></a>
-        <a href="#mugs">Coffee mugs <span class="count">3</span></a>
+      <p class="eyebrow">{% trans "The Shop" %}</p>
+      <h1>{% trans "Everything for a better cup." %}</h1>
+      <p class="lead">{% trans "Whole beans roasted every week in small batches, plus the tools and mugs to enjoy them." %}</p>
+      <nav class="shop-tabs" aria-label="{% trans 'Categories' %}">
+        <a href="#beans">{% trans "Whole beans" %} <span class="count">6</span></a>
+        <a href="#tools">{% trans "Coffee tools" %} <span class="count">3</span></a>
+        <a href="#mugs">{% trans "Coffee mugs" %} <span class="count">3</span></a>
       </nav>
     </section>
 
     <section class="shop-section" id="beans" aria-labelledby="beans-title">
       <div class="section-inner">
         <div class="section-head">
-          <h2 id="beans-title" data-reveal>Whole beans</h2>
-          <p data-reveal>Roasted every Tuesday, shipped on Wednesday. Every bag is traced back to the tree it grew on.
+          <h2 id="beans-title" data-reveal>{% trans "Whole beans" %}</h2>
+          <p data-reveal>{% trans "Roasted every Tuesday, shipped on Wednesday. Every bag is traced back to the tree it grew on." %}
           </p>
         </div>
         <div class="grid">
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/c4.jpg' %}" alt="Maned Wolf Highland Roast coffee bag" loading="lazy">
-              <span class="badge">New</span>
+              <img src="{% static 'image/c4.jpg' %}" alt="{% trans 'Maned Wolf Highland Roast coffee bag' %}" loading="lazy">
+              <span class="badge">{% trans "New" %}</span>
             </div>
             <div class="product-body">
-              <h3>Maned Wolf Highland Roast</h3>
-              <p class="meta">Peru · Medium roast · 250 g</p>
-              <p class="notes">Natural · fig, milk chocolate, peanut</p>
+              <h3>{% trans "Maned Wolf Highland Roast" %}</h3>
+              <p class="meta">{% trans "Peru · Medium roast · 250 g" %}</p>
+              <p class="notes">{% trans "Natural · fig, milk chocolate, peanut" %}</p>
               <div class="buy">
-                <span class="price">SAR 68</span>
-                <button class="add" type="button" data-product-id="1">Add to cart</button>
+                <span class="price">{% blocktrans with p="68" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-product-id="1">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/c1.jpg' %}" alt="Blue Finch Kenya AB coffee bag" loading="lazy">
-              <span class="badge hot">Best seller</span>
+              <img src="{% static 'image/c1.jpg' %}" alt="{% trans 'Blue Finch Kenya AB coffee bag' %}" loading="lazy">
+              <span class="badge hot">{% trans "Best seller" %}</span>
             </div>
             <div class="product-body">
-              <h3>Blue Finch</h3>
-              <p class="meta">Kenya · Medium-light roast · 220 g</p>
-              <p class="notes">Washed · blackcurrant, orange, black tea</p>
+              <h3>{% trans "Blue Finch" %}</h3>
+              <p class="meta">{% trans "Kenya · Medium-light roast · 220 g" %}</p>
+              <p class="notes">{% trans "Washed · blackcurrant, orange, black tea" %}</p>
               <div class="buy">
-                <span class="price">SAR 62</span>
-                <button class="add" type="button" data-name="Blue Finch">Add to cart</button>
+                <span class="price">{% blocktrans with p="62" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Blue Finch">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/c6.jpg' %}" alt="Toucan Rich Brew coffee bag" loading="lazy">
-              <span class="badge">New</span>
+              <img src="{% static 'image/c6.jpg' %}" alt="{% trans 'Toucan Rich Brew coffee bag' %}" loading="lazy">
+              <span class="badge">{% trans "New" %}</span>
             </div>
             <div class="product-body">
-              <h3>Toucan Rich Brew</h3>
-              <p class="meta">Peru · Dark roast · 255 g</p>
-              <p class="notes">Organic · dark chocolate, red wine, almond</p>
+              <h3>{% trans "Toucan Rich Brew" %}</h3>
+              <p class="meta">{% trans "Peru · Dark roast · 255 g" %}</p>
+              <p class="notes">{% trans "Organic · dark chocolate, red cherry, almond" %}</p>
               <div class="buy">
-                <span class="price">SAR 72</span>
-                <button class="add" type="button" data-name="Toucan Rich Brew">Add to cart</button>
+                <span class="price">{% blocktrans with p="72" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Toucan Rich Brew">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/c2.jpg' %}" alt="Parrot Nectar El Salvador coffee bag" loading="lazy">
+              <img src="{% static 'image/c2.jpg' %}" alt="{% trans 'Parrot Nectar El Salvador coffee bag' %}" loading="lazy">
             </div>
             <div class="product-body">
-              <h3>Parrot Nectar</h3>
-              <p class="meta">El Salvador · Medium roast · 230 g</p>
-              <p class="notes">Honey process · peach, milk cocoa, malt</p>
+              <h3>{% trans "Parrot Nectar" %}</h3>
+              <p class="meta">{% trans "El Salvador · Medium roast · 230 g" %}</p>
+              <p class="notes">{% trans "Honey process · peach, milk cocoa, malt" %}</p>
               <div class="buy">
-                <span class="price">SAR 58</span>
-                <button class="add" type="button" data-name="Parrot Nectar">Add to cart</button>
+                <span class="price">{% blocktrans with p="58" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Parrot Nectar">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/c5.jpg' %}" alt="Skink Sun Bean Ecuador coffee bag" loading="lazy">
+              <img src="{% static 'image/c5.jpg' %}" alt="{% trans 'Skink Sun Bean Ecuador coffee bag' %}" loading="lazy">
             </div>
             <div class="product-body">
-              <h3>Skink Sun Bean</h3>
-              <p class="meta">Ecuador · Dark roast · 240 g</p>
-              <p class="notes">Black natural · blueberry, date, cocoa</p>
+              <h3>{% trans "Skink Sun Bean" %}</h3>
+              <p class="meta">{% trans "Ecuador · Dark roast · 240 g" %}</p>
+              <p class="notes">{% trans "Black natural · blueberry, date, cocoa" %}</p>
               <div class="buy">
-                <span class="price">SAR 64</span>
-                <button class="add" type="button" data-name="Skink Sun Bean">Add to cart</button>
+                <span class="price">{% blocktrans with p="64" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Skink Sun Bean">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/c7.jpg' %}" alt="Nutty Squirrel Guatemala Antigua coffee bag" loading="lazy">
-              <span class="badge hot">Limited</span>
+              <img src="{% static 'image/c7.jpg' %}" alt="{% trans 'Nutty Squirrel Guatemala Antigua coffee bag' %}" loading="lazy">
+              <span class="badge hot">{% trans "Limited" %}</span>
             </div>
             <div class="product-body">
-              <h3>Nutty Squirrel</h3>
-              <p class="meta">Guatemala · Medium roast · 256 g</p>
-              <p class="notes">Antigua · hazelnut, cocoa, brown sugar</p>
+              <h3>{% trans "Nutty Squirrel" %}</h3>
+              <p class="meta">{% trans "Guatemala · Medium roast · 256 g" %}</p>
+              <p class="notes">{% trans "Antigua · hazelnut, cocoa, brown sugar" %}</p>
               <div class="buy">
-                <span class="price">SAR 95</span>
-                <button class="add" type="button" data-name="Nutty Squirrel">Add to cart</button>
+                <span class="price">{% blocktrans with p="95" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Nutty Squirrel">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
@@ -188,52 +197,52 @@
     <section class="shop-section" id="tools" aria-labelledby="tools-title">
       <div class="section-inner">
         <div class="section-head">
-          <h2 id="tools-title" data-reveal>Coffee tools</h2>
-          <p data-reveal>Simple, well-made gear for brewing at home.</p>
+          <h2 id="tools-title" data-reveal>{% trans "Coffee tools" %}</h2>
+          <p data-reveal>{% trans "Simple, well-made gear for brewing at home." %}</p>
         </div>
         <div class="grid">
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/scaler.jpg' %}" alt="Digital coffee scale" loading="lazy">
-              <span class="badge">New</span>
+              <img src="{% static 'image/scaler.jpg' %}" alt="{% trans 'Digital coffee scale' %}" loading="lazy">
+              <span class="badge">{% trans "New" %}</span>
             </div>
             <div class="product-body">
-              <h3>Digital Coffee Scale</h3>
-              <p class="meta">Brushed steel · Walnut frame</p>
-              <p class="notes">Built-in timer and tare for repeatable brews</p>
+              <h3>{% trans "Digital Coffee Scale" %}</h3>
+              <p class="meta">{% trans "Brushed steel · Walnut frame" %}</p>
+              <p class="notes">{% trans "Built-in timer and tare for repeatable brews" %}</p>
               <div class="buy">
-                <span class="price">SAR 85</span>
-                <button class="add" type="button" data-name="Digital Coffee Scale">Add to cart</button>
+                <span class="price">{% blocktrans with p="85" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Digital Coffee Scale">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/grinder.jpg' %}" alt="Portable steel coffee grinder" loading="lazy">
-              <span class="badge">New</span>
+              <img src="{% static 'image/grinder.jpg' %}" alt="{% trans 'Portable steel coffee grinder' %}" loading="lazy">
+              <span class="badge">{% trans "New" %}</span>
             </div>
             <div class="product-body">
-              <h3>Portable Grinder</h3>
-              <p class="meta">Steel and walnut · Digital display</p>
-              <p class="notes">Compact body that fits in a bag or on a shelf</p>
+              <h3>{% trans "Portable Grinder" %}</h3>
+              <p class="meta">{% trans "Steel and walnut · Digital display" %}</p>
+              <p class="notes">{% trans "Compact body that fits in a bag or on a shelf" %}</p>
               <div class="buy">
-                <span class="price">SAR 160</span>
-                <button class="add" type="button" data-name="Portable Grinder">Add to cart</button>
+                <span class="price">{% blocktrans with p="160" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Portable Grinder">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/toolSet.jpg' %}" alt="Coffee tool kit" loading="lazy">
-              <span class="badge hot">Best seller</span>
+              <img src="{% static 'image/toolSet.jpg' %}" alt="{% trans 'Coffee tool kit' %}" loading="lazy">
+              <span class="badge hot">{% trans "Best seller" %}</span>
             </div>
             <div class="product-body">
-              <h3>Coffee Tool Kit</h3>
-              <p class="meta">Green leather case · Complete set</p>
-              <p class="notes">Grinder, dripper, kettle and server in one case</p>
+              <h3>{% trans "Coffee Tool Kit" %}</h3>
+              <p class="meta">{% trans "Green leather case · Complete set" %}</p>
+              <p class="notes">{% trans "Grinder, dripper, kettle and server in one case" %}</p>
               <div class="buy">
-                <span class="price">SAR 210</span>
-                <button class="add" type="button" data-name="Coffee Tool Kit">Add to cart</button>
+                <span class="price">{% blocktrans with p="210" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Coffee Tool Kit">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
@@ -244,51 +253,51 @@
     <section class="shop-section" id="mugs" aria-labelledby="mugs-title">
       <div class="section-inner">
         <div class="section-head">
-          <h2 id="mugs-title" data-reveal>Coffee mugs</h2>
-          <p data-reveal>Tumblers and travel cups for coffee wherever you go.</p>
+          <h2 id="mugs-title" data-reveal>{% trans "Coffee mugs" %}</h2>
+          <p data-reveal>{% trans "Tumblers and travel cups for coffee wherever you go." %}</p>
         </div>
         <div class="grid">
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/green.jpg' %}" alt="Forest Green Tumbler" loading="lazy">
-              <span class="badge">New</span>
+              <img src="{% static 'image/green.jpg' %}" alt="{% trans 'Forest Green Tumbler' %}" loading="lazy">
+              <span class="badge">{% trans "New" %}</span>
             </div>
             <div class="product-body">
-              <h3>Forest Green Tumbler</h3>
-              <p class="meta">Tumbler · Straw lid</p>
-              <p class="notes">Coffee cherry and leaf print with a gold-tone lid</p>
+              <h3>{% trans "Forest Green Tumbler" %}</h3>
+              <p class="meta">{% trans "Tumbler · Straw lid" %}</p>
+              <p class="notes">{% trans "Coffee cherry and leaf print with a gold-tone lid" %}</p>
               <div class="buy">
-                <span class="price">SAR 45</span>
-                <button class="add" type="button" data-name="Forest Green Tumbler">Add to cart</button>
+                <span class="price">{% blocktrans with p="45" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Forest Green Tumbler">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/white.jpg' %}" alt="Blossom Travel Cup" loading="lazy">
-              <span class="badge">New</span>
+              <img src="{% static 'image/white.jpg' %}" alt="{% trans 'Blossom Travel Cup' %}" loading="lazy">
+              <span class="badge">{% trans "New" %}</span>
             </div>
             <div class="product-body">
-              <h3>Blossom Travel Cup</h3>
-              <p class="meta">Travel cup · Sip lid</p>
-              <p class="notes">Cream finish with a blossom and cherry print</p>
+              <h3>{% trans "Blossom Travel Cup" %}</h3>
+              <p class="meta">{% trans "Travel cup · Sip lid" %}</p>
+              <p class="notes">{% trans "Cream finish with a blossom and cherry print" %}</p>
               <div class="buy">
-                <span class="price">SAR 55</span>
-                <button class="add" type="button" data-name="Blossom Travel Cup">Add to cart</button>
+                <span class="price">{% blocktrans with p="55" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Blossom Travel Cup">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
           <article class="product" data-reveal>
             <div class="product-media">
-              <img src="{% static 'image/red.jpg' %}" alt="Burgundy Tumbler" loading="lazy">
+              <img src="{% static 'image/red.jpg' %}" alt="{% trans 'Burgundy Tumbler' %}" loading="lazy">
             </div>
             <div class="product-body">
-              <h3>Burgundy Tumbler</h3>
-              <p class="meta">Tumbler · Straw lid</p>
-              <p class="notes">Matte burgundy finish with a gold tree logo</p>
+              <h3>{% trans "Burgundy Tumbler" %}</h3>
+              <p class="meta">{% trans "Tumbler · Straw lid" %}</p>
+              <p class="notes">{% trans "Matte burgundy finish with a gold tree logo" %}</p>
               <div class="buy">
-                <span class="price">SAR 95</span>
-                <button class="add" type="button" data-name="Burgundy Tumbler">Add to cart</button>
+                <span class="price">{% blocktrans with p="95" %}SAR {{ p }}{% endblocktrans %}</span>
+                <button class="add" type="button" data-name="Burgundy Tumbler">{% trans "Add to cart" %}</button>
               </div>
             </div>
           </article>
@@ -300,38 +309,38 @@
   <footer class="site-footer" id="visit">
     <div class="footer-inner">
       <div class="footer-brand" data-reveal>
-        <a class="logo" href="{% url 'home' %}#top" aria-label="Coffee Tree home"><img
-            src="{% static 'image/logo_white.png' %}" alt="Coffee Tree"></a>
-        <p>Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches</p>
+        <a class="logo" href="{% url 'home' %}#top" aria-label="{% trans 'Coffee Tree home' %}"><img
+            src="{% static 'image/logo_white.png' %}" alt="{% trans 'Coffee Tree' %}"></a>
+        <p>{% trans "Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches" %}</p>
       </div>
-      <nav aria-label="Shop" data-reveal>
-        <h3><a href="{% url 'shop' %}">Shop</a></h3>
+      <nav aria-label="{% trans 'Shop' %}" data-reveal>
+        <h3><a href="{% url 'shop' %}">{% trans "Shop" %}</a></h3>
         <ul>
-          <li><a href="{% url 'shop' %}#beans">Whole beans</a></li>
-          <li><a href="{% url 'shop' %}#tools">Coffee tools</a></li>
-          <li><a href="{% url 'shop' %}#mugs">Coffee mugs</a></li>
+          <li><a href="{% url 'shop' %}#beans">{% trans "Whole beans" %}</a></li>
+          <li><a href="{% url 'shop' %}#tools">{% trans "Coffee tools" %}</a></li>
+          <li><a href="{% url 'shop' %}#mugs">{% trans "Coffee mugs" %}</a></li>
         </ul>
       </nav>
-      <nav aria-label="Company" data-reveal>
-        <h3>Company</h3>
+      <nav aria-label="{% trans 'Company' %}" data-reveal>
+        <h3>{% trans "Company" %}</h3>
         <ul>
-          <li><a href="{% url 'home' %}#home">Home</a></li>
-          <li><a href="{% url 'home' %}#about">About</a></li>
-          <li><a href="{% url 'shop' %}">Shop</a></li>
-          <li><a href="{% url 'cart' %}">Cart</a></li>
+          <li><a href="{% url 'home' %}#home">{% trans "Home" %}</a></li>
+          <li><a href="{% url 'home' %}#about">{% trans "About" %}</a></li>
+          <li><a href="{% url 'shop' %}">{% trans "Shop" %}</a></li>
+          <li><a href="{% url 'cart' %}">{% trans "Cart" %}</a></li>
 
         </ul>
       </nav>
       <div class="footer-visit" data-reveal>
-        <h3>Visit</h3>
-        <p>123 Coffee Street, Beanville</p>
+        <h3>{% trans "Visit" %}</h3>
+        <p>{% trans "123 Coffee Street, Beanville" %}</p>
         <p>coffeeTree@company.com</p>
         <p>(123) 456-7890</p>
       </div>
     </div>
     <div class="footer-bottom" data-reveal="fade">
-      <p>&copy; 2026 Coffee Tree. All rights reserved.</p>
-      <p>Roasted every Tuesday. Shipped on Wednesday.</p>
+      <p>&copy; {% trans "2026 Coffee Tree. All rights reserved." %}</p>
+      <p>{% trans "Roasted every Tuesday. Shipped on Wednesday." %}</p>
     </div>
   </footer>
 

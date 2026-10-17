@@ -24,4 +24,5 @@ urlpatterns = [
     path('shop/', views.shop, name='shop'),
     path('cart/', include('cart.urls')),
     path('accounts/', include('accounts.urls')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

@@ -1,7 +1,8 @@
 {% extends "accounts/base_auth.html" %}
-{% block title %}Create account{% endblock %}
+{% load i18n %}
+{% block title %}{% trans "Create account" %}{% endblock %}
 {% block content %}
-  <h1>Create account</h1>
+  <h1>{% trans "Create account" %}</h1>
   <form method="post" novalidate>
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -11,7 +12,7 @@
       {% if field.help_text %}<small class="helptext">{{ field.help_text|safe }}</small>{% endif %}
       {{ field.errors }}
     {% endfor %}
-    <button class="auth-btn" type="submit">Sign up</button>
+    <button class="auth-btn" type="submit">{% trans "Sign up" %}</button>
   </form>
-  <p class="auth-alt">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+  <p class="auth-alt">{% trans "Already have an account?" %} <a href="{% url 'login' %}">{% trans "Log in" %}</a></p>
 {% endblock %}

@@ -7,7 +7,9 @@
   var summaryEl = document.getElementById('cart-summary');
   if (!rows) return;
 
-  function money(n) { return n.toFixed(2) + ' $'; }
+  // currency comes from the page (SAR / ر.س), so it follows the chosen language
+  var currency = (document.querySelector('.cart-page') || document.body).dataset.currency || 'SAR';
+  function money(n) { return n.toFixed(2) + ' ' + currency; }
 
   function update() {
     var total = 0, count = 0;

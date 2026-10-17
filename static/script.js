@@ -2,10 +2,11 @@
   var svg = document.getElementById('tree');
   if (!svg) return;   // pages without the tree (like the shop) skip this part
   var NS = 'http://www.w3.org/2000/svg';
+  var RTL = document.documentElement.dir === 'rtl';   // Arabic: the tree is mirrored to the left
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var mq = window.matchMedia('(max-width: 820px), (max-aspect-ratio: 1/1)');
-  function setPAR() { svg.setAttribute('preserveAspectRatio', mq.matches ? 'xMaxYMin slice' : 'xMaxYMin meet'); }
+  function setPAR() { svg.setAttribute('preserveAspectRatio', (RTL ? 'xMinYMin ' : 'xMaxYMin ') + (mq.matches ? 'slice' : 'meet')); }
   setPAR();
   if (mq.addEventListener) mq.addEventListener('change', setPAR);
 
@@ -68,10 +69,11 @@
   }
 
   /* ---------- layers ---------- */
-  var gBack = el('g', {}, svg);
-  var gBranch = el('g', {}, svg);
-  var gBerry = el('g', {}, svg);
-  var gFront = el('g', {}, svg);
+  var root = el('g', RTL ? { transform: 'translate(900 0) scale(-1 1)' } : {}, svg);   // mirrored for RTL
+  var gBack = el('g', {}, root);
+  var gBranch = el('g', {}, root);
+  var gBerry = el('g', {}, root);
+  var gFront = el('g', {}, root);
 
   var items = [];
 
@@ -246,7 +248,8 @@
     var m = svg.getScreenCTM();
     if (!m) return null;
     pt.x = e.clientX; pt.y = e.clientY;
-    return pt.matrixTransform(m.inverse());
+    var r = pt.matrixTransform(m.inverse());
+    return RTL ? { x: 900 - r.x, y: r.y } : r;   // keep the wind aligned with the mirrored tree
   }
   function kick() { if (!running) { running = true; requestAnimationFrame(frame); } }
   function lift() { lx = null; ly = null; }
@@ -486,22 +489,6 @@
       }
     });
   }, { threshold: [0, .6] }).observe(trigger);
-})();
-
-/* HEADER: language switch (EN / AR) - only the button state for now */
-(function () {
-  var box = document.querySelector('.lang');
-  if (!box) return;
-  box.addEventListener('click', function (e) {
-    var btn = e.target.closest('button');
-    if (!btn) return;
-    box.querySelectorAll('button').forEach(function (b) {
-      var on = b === btn;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    // later: translate the page text here based on btn.dataset.lang ("en" or "ar")
-  });
 })();
 
 /* =====================================================

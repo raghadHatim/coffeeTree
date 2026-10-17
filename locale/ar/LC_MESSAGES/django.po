@@ -1,0 +1,433 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Coffee Tree 1.0\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+msgid "123 Coffee Street, Beanville"
+msgstr "123 شارع القهوة، مكة"
+
+msgid "2026 Coffee Tree. All rights reserved."
+msgstr "2026 شجرة القهوة. جميع الحقوق محفوظة."
+
+msgid "A basket of hand-picked coffee cherries"
+msgstr "سلة من ثمار البن المقطوفة يدوياً"
+
+msgid "A burlap sack filled with roasted coffee beans"
+msgstr "كيس خيش مملوء بحبوب القهوة المحمّصة"
+
+msgid "A pile of freshly roasted beans"
+msgstr "كومة من الحبوب المحمّصة طازجة"
+
+msgid "About"
+msgstr "قصتنا"
+
+msgid "Account"
+msgstr "الحساب"
+
+msgid "Action"
+msgstr "الإجراء"
+
+msgid "Add to cart"
+msgstr "أضف إلى السلة"
+
+msgid "Already have an account?"
+msgstr "لديك حساب بالفعل؟"
+
+msgid "Antigua · hazelnut, cocoa, brown sugar"
+msgstr "أنتيغوا · بندق، كاكاو، سكر بني"
+
+msgid ""
+"At <strong>Coffee Tree</strong>, our journey begins right at the origin—the "
+"living tree. We believe that exceptional coffee isn't crafted in the "
+"roastery, but nurtured on highland slopes under open skies, branch by "
+"branch."
+msgstr ""
+"في <strong>شجرة القهوة</strong> تبدأ حكايتنا من الأصل: من الشجرة المثمرة"
+"نفسها. نؤمن أن القهوة الاستثنائية لا تُصنع في المحمصة، بل تنمو وتنضج على "
+"سفوح المرتفعات تحت سماء مفتوحة، وتكتسب نكهتها موسماً بعد موسم."
+
+msgid "Best seller"
+msgstr "الأكثر مبيعاً"
+
+msgid "Black natural · blueberry, date, cocoa"
+msgstr "معالجة طبيعية سوداء · توت أزرق، تمر، كاكاو"
+
+msgid "Blossom Travel Cup"
+msgstr "كوب سفر أزهار البن"
+
+msgid "Blossom season"
+msgstr "موسم الإزهار"
+
+msgid "Blue Finch"
+msgstr "العصفور الأزرق"
+
+msgid "Blue Finch Kenya AB coffee bag"
+msgstr "كيس قهوة العصفور الأزرق من كينيا"
+
+msgid "Browse the shop"
+msgstr "تصفّح المتجر"
+
+msgid "Brushed steel · Walnut frame"
+msgstr "فولاذ مصقول · إطار من خشب الجوز"
+
+msgid "Built-in timer and tare for repeatable brews"
+msgstr "مؤقّت مدمج وخاصية تصفير لتحضير دقيق ومتكرر في كل مرة"
+
+msgid "Burgundy Tumbler"
+msgstr "كوب حراري عنابي"
+
+msgid ""
+"By partnering exclusively with sustainable micro-lot farms that hand-pick "
+"cherries at peak ripeness, we preserve the authentic flavor profile of every"
+" harvest. From the branch of the tree to your morning cup, we honor every "
+"step with artisanal weekly roasts."
+msgstr ""
+"نعمل حصراً مع مزارع صغيرة تلتزم بالزراعة المستدامة، تقطف ثمارها يدوياً عند "
+"أوج النضج، لنحافظ على النكهة الأصيلة لكل موسم حصاد. ومن غصن الشجرة إلى "
+"فنجانك الصباحي، نعتني بكل خطوة، ونحمّص حبوبنا كل أسبوع بدفعات صغيرة وبعناية "
+"الحِرفيين."
+
+msgid "Cart"
+msgstr "السلة"
+
+msgid "Categories"
+msgstr "الأقسام"
+
+msgid "Checkout"
+msgstr "إتمام الطلب"
+
+msgid "Coffee Tool Kit"
+msgstr "طقم أدوات القهوة"
+
+msgid "Coffee Tree"
+msgstr "شجرة القهوة"
+
+msgid "Coffee Tree home"
+msgstr "شجرة القهوة، الصفحة الرئيسية"
+
+msgid "Coffee Tree logo"
+msgstr "شعار شجرة القهوة"
+
+msgid "Coffee cherry and leaf print with a gold-tone lid"
+msgstr "نقش ثمار البن وأوراقه، مع غطاء بلمسة ذهبية"
+
+msgid "Coffee mugs"
+msgstr "أكواب القهوة"
+
+msgid "Coffee terraces on a highland hillside"
+msgstr "مدرّجات قهوة على سفح جبل مرتفع"
+
+msgid "Coffee tool kit"
+msgstr "طقم أدوات القهوة"
+
+msgid "Coffee tools"
+msgstr "أدوات القهوة"
+
+msgid "Coffee, from the branch."
+msgstr "قهوة من الغصن إلى الفنجان."
+
+msgid "Compact body that fits in a bag or on a shelf"
+msgstr "تصميم مدمج يناسب الحقيبة والرف على حد سواء"
+
+msgid "Company"
+msgstr "الشركة"
+
+msgid "Cream finish with a blossom and cherry print"
+msgstr "بلون كريمي مزيّن بنقوش الأزهار وثمار البن"
+
+msgid "Create account"
+msgstr "إنشاء حساب"
+
+msgid "Create an account"
+msgstr "أنشئ حسابك"
+
+msgid "Decrease quantity"
+msgstr "إنقاص الكمية"
+
+msgid "Digital Coffee Scale"
+msgstr "ميزان القهوة الرقمي"
+
+msgid "Digital coffee scale"
+msgstr "ميزان قهوة رقمي"
+
+msgid "Drying beds"
+msgstr "أسِرّة التجفيف"
+
+msgid "Ecuador · Dark roast · 240 g"
+msgstr "الإكوادور · تحميص داكن · 240 جم"
+
+msgid "El Salvador · Medium roast · 230 g"
+msgstr "السلفادور · تحميص متوسط · 230 جم"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Every bean tells the story of its tree."
+msgstr "كل حبّة تروي حكاية شجرتها."
+
+msgid "Everything for a better cup."
+msgstr "كل ما تحتاجه لفنجان أجمل."
+
+msgid "Forest Green Tumbler"
+msgstr "كوب حراري أخضر غابي"
+
+msgid "Full name"
+msgstr "الاسم الكامل"
+
+msgid "Green leather case · Complete set"
+msgstr "حقيبة جلدية خضراء · طقم متكامل"
+
+msgid "Grinder, dripper, kettle and server in one case"
+msgstr "مطحنة، ومصفاة تقطير، وإبريق ماء، ودورق تقديم في حقيبة واحدة"
+
+msgid "Grown slowly, in the open air"
+msgstr "تنضج على مهل، تحت سماء مفتوحة"
+
+msgid "Guatemala · Medium roast · 256 g"
+msgstr "غواتيمالا · تحميص متوسط · 256 جم"
+
+msgid "Hand picking"
+msgstr "القطف اليدوي"
+
+#, python-format
+msgid "Hi, %(name)s"
+msgstr "أهلاً، %(name)s"
+
+msgid "Highland"
+msgstr "مرتفعات"
+
+msgid "Highland terraces"
+msgstr "مدرّجات المرتفعات"
+
+msgid "Home"
+msgstr "الرئيسية"
+
+msgid "Honey process · peach, milk cocoa, malt"
+msgstr "معالجة العسل · خوخ، كاكاو بالحليب، شعير محمّص"
+
+msgid "Increase quantity"
+msgstr "زيادة الكمية"
+
+msgid "Kenya · Medium-light roast · 220 g"
+msgstr "كينيا · تحميص متوسط إلى فاتح · 220 جم"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Limited"
+msgstr "كمية محدودة"
+
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+msgid "Log out"
+msgstr "تسجيل الخروج"
+
+msgid "Main"
+msgstr "القائمة الرئيسية"
+
+msgid "Maned Wolf Highland Roast"
+msgstr "الذئب الأعرف – تحميصة المرتفعات"
+
+msgid "Maned Wolf Highland Roast coffee bag"
+msgstr "كيس قهوة الذئب الأعرف – تحميصة المرتفعات"
+
+msgid "Matte burgundy finish with a gold tree logo"
+msgstr "بلون عنابي مطفي مع شعار الشجرة الذهبي"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Natural · fig, milk chocolate, peanut"
+msgstr "معالجة طبيعية · تين، شوكولاتة بالحليب، فول سوداني"
+
+msgid "New"
+msgstr "جديد"
+
+msgid "New here?"
+msgstr "هل أنت جديد هنا؟"
+
+msgid "Nutty Squirrel"
+msgstr "سنجاب المكسّرات"
+
+msgid "Nutty Squirrel Guatemala Antigua coffee bag"
+msgstr "كيس قهوة سنجاب المكسّرات من أنتيغوا، غواتيمالا"
+
+msgid "Order Summary"
+msgstr "ملخّص الطلب"
+
+msgid "Organic · dark chocolate, red wine, almond"
+msgstr "زراعة عضوية · شوكولاتة داكنة، عنب أحمر، لوز"
+
+msgid "Our crops"
+msgstr "من مزارعنا"
+
+msgid "Parrot Nectar"
+msgstr "رحيق الببغاء"
+
+msgid "Parrot Nectar El Salvador coffee bag"
+msgstr "كيس قهوة رحيق الببغاء من السلفادور"
+
+msgid "Peru · Dark roast · 255 g"
+msgstr "بيرو · تحميص داكن · 255 جم"
+
+msgid "Peru · Medium roast · 250 g"
+msgstr "بيرو · تحميص متوسط · 250 جم"
+
+msgid "Photos of our coffee crops"
+msgstr "صور من مزارع القهوة لدينا"
+
+msgid "Portable Grinder"
+msgstr "مطحنة قهوة محمولة"
+
+msgid "Portable steel coffee grinder"
+msgstr "مطحنة قهوة فولاذية محمولة"
+
+msgid "Price"
+msgstr "السعر"
+
+msgid "Product"
+msgstr "المنتج"
+
+msgid "Quantity"
+msgstr "الكمية"
+
+msgid "Raised beds of coffee drying in the sun"
+msgstr "أسِرّة مرتفعة لتجفيف البن تحت الشمس"
+
+msgid "Remove item"
+msgstr "إزالة المنتج"
+
+msgid "Ripe cherries"
+msgstr "ثمار البن الناضجة"
+
+msgid "Ripe red coffee cherries on the branch"
+msgstr "ثمار بن حمراء ناضجة على الغصن"
+
+msgid ""
+"Roasted every Tuesday, shipped on Wednesday. Every bag is traced back to the"
+" tree it grew on."
+msgstr "نحمّص كل ثلاثاء ونشحن كل أربعاء، وكل كيس نعرف الشجرة التي جاء منها."
+
+msgid "Roasted every Tuesday. Shipped on Wednesday."
+msgstr "تحميص كل ثلاثاء، وشحن كل أربعاء."
+
+msgid "Rooted in Origin"
+msgstr "من الجذور نبدأ"
+
+msgid "SAR"
+msgstr "ر.س"
+
+#, python-format
+msgid "SAR %(p)s"
+msgstr "%(p)s ر.س"
+
+msgid "Shop"
+msgstr "المتجر"
+
+msgid "Shop beans"
+msgstr "تسوّق القهوة"
+
+msgid "Shopping Cart"
+msgstr "سلة التسوق"
+
+msgid "Sign in"
+msgstr "تسجيل الدخول"
+
+msgid "Sign up"
+msgstr "سجّل الآن"
+
+msgid "Simple, well-made gear for brewing at home."
+msgstr "أدوات بسيطة متقنة الصنع، تمنحك تحضيراً احترافياً في بيتك."
+
+msgid "Single-Origin Micro-Lots"
+msgstr "دفعات صغيرة من أصل واحد"
+
+msgid "Skink Sun Bean"
+msgstr "السقنقور – حبّة الشمس"
+
+msgid "Skink Sun Bean Ecuador coffee bag"
+msgstr "كيس قهوة السقنقور – حبّة الشمس من الإكوادور"
+
+msgid "Small-Batch Roasts"
+msgstr "تحميص طازج بدفعات صغيرة"
+
+msgid ""
+"Small-lot beans from high-altitude farms, picked ripe and roasted in weekly "
+"batches"
+msgstr ""
+"حبوب مختارة بعناية من مزارع المرتفعات، تُقطف عند تمام نضجها وتُحمَّص طازجة "
+"كل أسبوع."
+
+msgid ""
+"Small-lot beans from high-altitude farms, picked ripe and roasted in weekly "
+"batches. Every bag is traced back to the tree it grew on."
+msgstr ""
+"حبوب مختارة بعناية من مزارع المرتفعات، تُقطف عند تمام نضجها وتُحمَّص طازجة "
+"كل أسبوع. وكل كيس نعرف الشجرة التي جاء منها."
+
+msgid "Steel and walnut · Digital display"
+msgstr "فولاذ وخشب الجوز · شاشة رقمية"
+
+msgid "The Shop"
+msgstr "المتجر"
+
+msgid "This email is already registered."
+msgstr "هذا البريد الإلكتروني مسجّل لدينا مسبقاً."
+
+msgid "Total"
+msgstr "الإجمالي"
+
+msgid "Toucan Rich Brew"
+msgstr "التوكان – تحميصة غنية"
+
+msgid "Toucan Rich Brew coffee bag"
+msgstr "كيس قهوة التوكان – تحميصة غنية"
+
+msgid "Traced to the Tree"
+msgstr "مصدر موثّق حتى الشجرة"
+
+msgid "Travel cup · Sip lid"
+msgstr "كوب سفر · غطاء للارتشاف"
+
+msgid "Tumbler · Straw lid"
+msgstr "كوب حراري · غطاء بماصة"
+
+msgid "Tumblers and travel cups for coffee wherever you go."
+msgstr "أكواب حرارية وأكواب سفر ترافق قهوتك أينما ذهبت."
+
+msgid "Visit"
+msgstr "زورونا"
+
+msgid "Washed · blackcurrant, orange, black tea"
+msgstr "معالجة مغسولة · توت أسود، برتقال، شاي أسود"
+
+msgid "Weekly"
+msgstr "كل أسبوع"
+
+msgid "Weekly roast"
+msgstr "التحميص الأسبوعي"
+
+msgid "Welcome to Coffee Tree!"
+msgstr "أهلاً بك في شجرة القهوة!"
+
+msgid "White coffee blossoms"
+msgstr "أزهار شجرة البن البيضاء"
+
+msgid "Whole beans"
+msgstr "حبوب البن"
+
+msgid ""
+"Whole beans roasted every week in small batches, plus the tools and mugs to "
+"enjoy them."
+msgstr ""
+"حبوب تُحمَّص كل أسبوع بدفعات صغيرة، وإلى جانبها الأدوات والأكواب التي تكتمل "
+"بها متعة قهوتك."
+
+msgid "Your cart is empty."
+msgstr "سلّتك فارغة حالياً."

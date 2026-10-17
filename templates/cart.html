@@ -1,33 +1,40 @@
 {% load static %}
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_current_language_bidi as IS_RTL %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if IS_RTL %}rtl{% else %}ltr{% endif %}">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Shopping Cart | Coffee Tree</title>
+  <title>{% trans "Shopping Cart" %} | {% trans "Coffee Tree" %}</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,400&family=Jost:wght@400;500&display=swap"
     rel="stylesheet">
+{% if IS_RTL %}<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600&display=swap" rel="stylesheet">{% endif %}
 
   <link rel="stylesheet" href="{% static 'style.css' %}">
   <link rel="stylesheet" href="{% static 'cart.css' %}">
+  <link rel="stylesheet" href="{% static 'rtl.css' %}">
 </head>
 
 <body>
 
   <header class="site-header" id="top">
-    <a class="logo" href="{% url 'home' %}" aria-label="Coffee Tree home"><img src="{% static 'image/logo.png' %}"
-        alt="Coffee Tree logo"></a>
+    <a class="logo" href="{% url 'home' %}" aria-label="{% trans 'Coffee Tree home' %}"><img src="{% static 'image/logo.png' %}"
+        alt="{% trans 'Coffee Tree logo' %}"></a>
 
-    <nav class="site-nav" id="siteNav" aria-label="Main">
-      <a href="{% url 'home' %}#top">Home</a>
-      <a href="{% url 'home' %}#about">About</a>
-      <a href="{% url 'shop' %}">Shop</a>
-      <a href="{% url 'cart' %}">Cart</a>
+    <nav class="site-nav" id="siteNav" aria-label="{% trans 'Main' %}">
+      <a href="{% url 'home' %}#top">{% trans "Home" %}</a>
+      <a href="{% url 'home' %}#about">{% trans "About" %}</a>
+      <a href="{% url 'shop' %}">{% trans "Shop" %}</a>
+      <a href="{% url 'cart' %}">{% trans "Cart" %}</a>
     </nav>
 
     <div class="header-actions">
@@ -36,14 +43,14 @@
           <button type="button" class="signin user-toggle" id="userToggle"
                   aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
-            <span>Hi, {{ user.first_name|default:user.username }}</span>
+            <span>{% blocktrans with name=user.first_name|default:user.username %}Hi, {{ name }}{% endblocktrans %}</span>
           </button>
           <div class="user-dropdown" id="userDropdown" hidden>
 <form method="post" action="{% url 'logout' %}">
   {% csrf_token %}
   <button type="submit">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4"/><path d="M16 8l4 4-4 4M20 12H9"/></svg>
-    <span>Log out</span>
+    <span>{% trans "Log out" %}</span>
   </button>
 </form>
           </div>
@@ -51,10 +58,10 @@
       {% else %}
         <a class="signin" href="{% url 'login' %}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.8-5.4 7-5.4s6.2 1.8 7 5.4"/></svg>
-          <span>Sign in</span>
+          <span>{% trans "Sign in" %}</span>
         </a>
       {% endif %}
-      <a class="cart" href="#" aria-label="Cart">
+      <a class="cart" href="{% url 'cart' %}" aria-label="{% trans 'Cart' %}">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3 4h2.4l2.2 11h10.2l2-8H6.4" />
           <circle cx="9.5" cy="19.5" r="1.4" />
@@ -62,11 +69,13 @@
         </svg>
         <span class="cart-count">{{ total_items_count|default:0 }}</span>
       </a>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" class="active" data-lang="en" aria-pressed="true">EN</button>
-        <button type="button" data-lang="ar" aria-pressed="false">AR</button>
-      </div>
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false"
+      <form class="lang" action="{% url 'set_language' %}" method="post" role="group" aria-label="{% trans 'Language' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <button type="submit" name="language" value="en" class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}" aria-pressed="{% if LANGUAGE_CODE == 'en' %}true{% else %}false{% endif %}">EN</button>
+        <button type="submit" name="language" value="ar" class="{% if LANGUAGE_CODE == 'ar' %}active{% endif %}" aria-pressed="{% if LANGUAGE_CODE == 'ar' %}true{% else %}false{% endif %}">AR</button>
+      </form>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="{% trans 'Menu' %}" aria-expanded="false"
         aria-controls="siteNav"><svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16" />
         </svg></button>
@@ -74,17 +83,17 @@
   </header>
 
   <!-- main start -->
-  <main class="cart-page">
+  <main class="cart-page" data-currency="{% trans 'SAR' %}">
     <section class="cart-box" aria-labelledby="cart-title">
-      <h1 class="cart-title" id="cart-title">Shopping Cart</h1>
+      <h1 class="cart-title" id="cart-title">{% trans "Shopping Cart" %}</h1>
 
       <table class="cart-table">
         <thead>
           <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Action</th>
+            <th scope="col">{% trans "Product" %}</th>
+            <th scope="col">{% trans "Quantity" %}</th>
+            <th scope="col">{% trans "Price" %}</th>
+            <th scope="col">{% trans "Action" %}</th>
           </tr>
         </thead>
         <tbody id="cart-items">
@@ -97,14 +106,14 @@
             </td>
             <td data-label="Quantity">
               <div class="qty">
-                <button class="qty-btn" type="button" data-step="-1" aria-label="Decrease quantity">&minus;</button>
+                <button class="qty-btn" type="button" data-step="-1" aria-label="{% trans 'Decrease quantity' %}">&minus;</button>
                 <span class="qty-value">{{ item.quantity }}</span>
-                <button class="qty-btn" type="button" data-step="1" aria-label="Increase quantity">+</button>
+                <button class="qty-btn" type="button" data-step="1" aria-label="{% trans 'Increase quantity' %}">+</button>
               </div>
             </td>
-            <td data-label="Price" class="cart-price">{{ item.product.price }} SAR</td>
+            <td data-label="Price" class="cart-price">{{ item.product.price }} {% trans "SAR" %}</td>
             <td data-label="Action">
-              <button class="remove" type="button" data-product-id="{{ item.product.id }}" aria-label="Remove item">
+              <button class="remove" type="button" data-product-id="{{ item.product.id }}" aria-label="{% trans 'Remove item' %}">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6" />
                 </svg>
@@ -113,20 +122,20 @@
           </tr>
           {% empty %}
           <tr>
-            <td colspan="4" style="text-align: center; padding: 20px;">Your cart is empty.</td>
+            <td colspan="4" style="text-align: center; padding: 20px;">{% trans "Your cart is empty." %}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
 
       <p class="cart-empty" id="cart-empty" hidden>
-        Your cart is empty. <a class="link" href="{% url 'shop' %}">Browse the shop</a>
+        {% trans "Your cart is empty." %} <a class="link" href="{% url 'shop' %}">{% trans "Browse the shop" %}</a>
       </p>
 
       <div class="cart-summary" id="cart-summary">
-        <h2>Order Summary</h2>
-        <p class="cart-total"><span>Total</span><strong id="cart-total">{{ total_price }} SAR</strong></p>
-        <a class="checkout-btn" href="#">Checkout</a>
+        <h2>{% trans "Order Summary" %}</h2>
+        <p class="cart-total"><span>{% trans "Total" %}</span><strong id="cart-total">{{ total_price }} {% trans "SAR" %}</strong></p>
+        <a class="checkout-btn" href="#">{% trans "Checkout" %}</a>
       </div>
     </section>
   </main>
@@ -135,37 +144,37 @@
   <footer class="site-footer" id="visit">
     <div class="footer-inner">
       <div class="footer-brand" data-reveal>
-        <a class="logo" href="#top" aria-label="Coffee Tree home"><img src="{% static 'image/logo_white.png' %}"
-            alt="Coffee Tree"></a>
-        <p>Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches</p>
+        <a class="logo" href="#top" aria-label="{% trans 'Coffee Tree home' %}"><img src="{% static 'image/logo_white.png' %}"
+            alt="{% trans 'Coffee Tree' %}"></a>
+        <p>{% trans "Small-lot beans from high-altitude farms, picked ripe and roasted in weekly batches" %}</p>
       </div>
-      <nav aria-label="Shop" data-reveal>
-        <h3><a href="{% url 'shop' %}">Shop</a></h3>
+      <nav aria-label="{% trans 'Shop' %}" data-reveal>
+        <h3><a href="{% url 'shop' %}">{% trans "Shop" %}</a></h3>
         <ul>
-          <li><a href="{% url 'shop' %}#beans">Whole beans</a></li>
-          <li><a href="{% url 'shop' %}#tools">Coffee tools</a></li>
-          <li><a href="{% url 'shop' %}#mugs">Coffee mugs</a></li>
+          <li><a href="{% url 'shop' %}#beans">{% trans "Whole beans" %}</a></li>
+          <li><a href="{% url 'shop' %}#tools">{% trans "Coffee tools" %}</a></li>
+          <li><a href="{% url 'shop' %}#mugs">{% trans "Coffee mugs" %}</a></li>
         </ul>
       </nav>
-      <nav aria-label="Company" data-reveal>
-        <h3>Company</h3>
+      <nav aria-label="{% trans 'Company' %}" data-reveal>
+        <h3>{% trans "Company" %}</h3>
         <ul>
-          <li><a href="{% url 'home' %}#home">Home</a></li>
-          <li><a href="{% url 'home' %}#about">About</a></li>
-          <li><a href="{% url 'shop' %}">Shop</a></li>
-          <li><a href="{% url 'cart' %}">Cart</a></li>
+          <li><a href="{% url 'home' %}#home">{% trans "Home" %}</a></li>
+          <li><a href="{% url 'home' %}#about">{% trans "About" %}</a></li>
+          <li><a href="{% url 'shop' %}">{% trans "Shop" %}</a></li>
+          <li><a href="{% url 'cart' %}">{% trans "Cart" %}</a></li>
         </ul>
       </nav>
       <div class="footer-visit" data-reveal>
-        <h3>Visit</h3>
-        <p>123 Coffee Street, Beanville</p>
+        <h3>{% trans "Visit" %}</h3>
+        <p>{% trans "123 Coffee Street, Beanville" %}</p>
         <p>coffeeTree@company.com</p>
         <p>(123) 456-7890</p>
       </div>
     </div>
     <div class="footer-bottom" data-reveal="fade">
-      <p>&copy; 2026 Coffee Tree. All rights reserved.</p>
-      <p>Roasted every Tuesday. Shipped on Wednesday.</p>
+      <p>&copy; {% trans "2026 Coffee Tree. All rights reserved." %}</p>
+      <p>{% trans "Roasted every Tuesday. Shipped on Wednesday." %}</p>
     </div>
   </footer>
 

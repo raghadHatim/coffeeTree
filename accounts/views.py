@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
+from django.utils.translation import gettext as _
 
 from cart.models import Cart
 from .forms import RegisterForm
@@ -14,9 +15,9 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            Cart.objects.get_or_create(user=user)  # نسوي له سلة عشان موديل Cart مربوط بالمستخدم
+            Cart.objects.get_or_create(user=user)  # every user gets a cart
             login(request, user)
-            messages.success(request, "Welcome to Coffee Tree!")
+            messages.success(request, _("Welcome to Coffee Tree!"))
             return redirect("home")
     else:
         form = RegisterForm()
