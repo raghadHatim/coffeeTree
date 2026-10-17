@@ -69,5 +69,5 @@ Open http://127.0.0.1:8000/ for the store and http://127.0.0.1:8000/admin/ for t
 
 | Developer | GitHub |
 | :--- | :--- |
-| **[Samar Alsaidi]** | [@samar-uqu](https://github.com/samar-uqu) | 
-| **[Raghad Hatim]** | [@raghadHatim](https://github.com/raghadHatim) |
+| **Samar Alsaidi** | [@samar-uqu](https://github.com/samar-uqu) | 
+| **Raghad Hatim** | [@raghadHatim](https://github.com/raghadHatim) |
